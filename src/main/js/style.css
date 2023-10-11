@@ -57,6 +57,10 @@ aside{
     transform: rotateZ(90deg); /*Los icone los giramos*/
  }
 
+ .boton-carrito {
+    margin-top: 2rem;
+ }
+
 .boton-menu{
     background-color: transparent;
     border: 0;
@@ -64,6 +68,7 @@ aside{
     font-size: 1rem;
     cursor: pointer;
     display: flex;
+    align-items:center ;
     gap: 1rem;
     font-weight: 600;
     padding: 1rem;
@@ -166,4 +171,19 @@ main {
 .producto-agregar:hover { /*el color se modifica cuando seleccionamos agregar*/
     background-color: var(--clr-main);
     color: var(--clr-white);
+}
+
+
+
+
+/*CARRITO*/
+
+.carrito-vacio {
+    color: var(--clr-main);
+    display: none;
+}
+.carrito-productos {
+    display: flex; /*ponemos los productos del carrito uno abajo del otro del otro con espacios*/
+    flex-direction: column;
+    gap: 1rem;
 }
