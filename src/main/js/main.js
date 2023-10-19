@@ -65,7 +65,7 @@ const productos= [
     {    
         id: "Mouse-01",
         titulo: "Mouse 01",
-        imagen: "./img/Accesorios/mouse inalambrico.jpeg",
+        imagen: "./img/Accesorios/mouse ligitech.png",
         categoria: {
             nombre: "Mouse Inalambrico",
             id: "accesorios"
