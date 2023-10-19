@@ -7,7 +7,7 @@ const productos= [
         imagen: "./img/notebook-asus.jpeg",
         categoria: {
             nombre: "Notebooks",
-            id: "notebook"
+            id: "notebooks"
         },
         precio: 350000
     },
@@ -17,7 +17,7 @@ const productos= [
         imagen: "./img/notebook-hp.webp",
         categoria: {
             nombre: "Notebooks",
-            id: "notebook"
+            id: "notebooks"
         },
         precio: 265999
     },
@@ -28,7 +28,7 @@ const productos= [
         imagen: "./img/notebook_lenovo.webp",
         categoria: {
             nombre: "Notebooks",
-            id: "notebook"
+            id: "notebooks"
         },
         precio: 405000
     },
@@ -37,8 +37,8 @@ const productos= [
         titulo: "Monitor 01",
         imagen: "./img/Accesorios/monitor samsung.png",
         categoria: {
-            nombre: "Accesorios",
-            id: "Monitor Samsung"
+            nombre: "Monitor Samsung",
+            id: "accesorios"
         },
         precio: 280000
     },
@@ -47,8 +47,8 @@ const productos= [
         titulo: "Monitor 02",
         imagen: "./img/Accesorios/monitor gigabyte.png",
         categoria: {
-            nombre: "Accesorios",
-            id: "Monitor Gigabyte"
+            nombre: "Monitor Gigabyte",
+            id: "accesorios"
         },
         precio: 250000
     },
@@ -57,8 +57,8 @@ const productos= [
         titulo: "Monitor 03",
         imagen: "./img/Accesorios/monitor asus.jpg",
         categoria: {
-            nombre: "Accesorios",
-            id: "Monitor Gigabyte"
+            nombre: "Monitor Asus",
+            id: "accesorios"
         },
         precio: 200000
     },
@@ -67,8 +67,8 @@ const productos= [
         titulo: "Mouse 01",
         imagen: "./img/Accesorios/mouse inalambrico.jpeg",
         categoria: {
-            nombre: "Accesorios",
-            id: "Mouse Inalambrico"
+            nombre: "Mouse Inalambrico",
+            id: "accesorios"
         },
         precio: 1000
     },
@@ -77,8 +77,8 @@ const productos= [
         titulo: "Mouse 02",
         imagen: "./img/Accesorios/mouse razer.png",
         categoria: {
-            nombre: "Accesorios",
-            id: "Mouse Razer"
+            nombre: "Mouse Razer",
+            id: "accesorios"
         },
         precio: 2000
     },
@@ -87,8 +87,8 @@ const productos= [
         titulo: "CPU 01",
         imagen: "./img/Accesorios/cpu-gamer.png",
         categoria: {
-            nombre: "Accesorios",
-            id: "CPU gamer"
+            nombre: "CPU gamer",
+            id: "accesorios"
         },
         precio: 500000
     }
@@ -98,11 +98,14 @@ const productos= [
 ];
 /*Traemos desde el html  */
 const contenedorProductos = document.querySelector("#contenedor-productos");
-const BotonesCategoria = document.querySelectorAll(".boton-categoria");
+const botonesCategoria = document.querySelectorAll(".boton-categoria");
 
 
-function cargarProductos(){
-    productos.forEach(producto => { /*El forEach recorre todo el array */
+function cargarProductos(ProductosElegidos){
+
+    contenedorProductos.innerHTML ="";
+
+    ProductosElegidos.forEach(producto => { /*El forEach recorre todo el array */
 
         const div = document.createElement("div");
         div.classList.add("producto");
@@ -117,15 +120,21 @@ function cargarProductos(){
 
         contenedorProductos.append(div);
 
-    });
+    })
 }
 
-cargarProductos();  /*Llamamos a la función */
+cargarProductos(productos);  /*Llamamos a la función */
 
-BotonesCategoria.forEach(boton => {
-    boton.addEventListener("click",(e) =>{
-       
-        BotonesCategoria.forEach(boton => boton.classList.remove("active")); /*Le sacamos el active del boton que esta seleccionado */
+botonesCategoria.forEach(boton => {
+    boton.addEventListener("click", (e) => {
+        botonesCategoria.forEach(boton => boton.classList.remove("active")); /*Le sacamos el active del boton que esta seleccionado */
         e.currentTarget.classList.add("active");
-    })
-})
+
+        if (e.currentTarget.id !== "todos") {
+            const productosBoton = productos.filter(producto => producto.categoria.id === e.currentTarget.id);
+            cargarProductos(productosBoton);
+        } else {
+            cargarProductos(productos);
+        }
+    });
+});
