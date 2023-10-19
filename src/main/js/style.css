@@ -61,6 +61,18 @@ aside{
     margin-top: 2rem;
  }
 
+ .numerito{
+    background-color: var(--clr-white);
+    color: var(--clr-main);
+    padding: .15rem .25rem;
+    border-radius: .25rem;
+ }
+ .boton-carrito-active{
+    background-color: var(--clr-main);
+    color: var(--clr-white);
+
+ }
+
 .boton-menu{
     background-color: transparent;
     border: 0;
@@ -184,9 +196,10 @@ main {
     gap: 1.5rem;
 }
 
-.carrito-vacio {
+.carrito-vacio,
+.carrito-comprado {
     color: var(--clr-main);
-    display: none;
+   
 }
 .carrito-productos {
     display: flex; /*ponemos los productos del carrito uno abajo del otro del otro con espacio entre ellos*/
@@ -259,7 +272,6 @@ main {
     border-bottom-right-radius: 1rem;
 }
 
-.carrito-comprado {
-    color: var(--clr-main);
-    
+.disabled{
+    display: none;
 }
