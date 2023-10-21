@@ -7,7 +7,7 @@ const productos= [
         imagen: "./img/notebook-asus.jpeg",
         categoria: {
             nombre: "Notebooks",
-            id: "notebooks"
+            id: "Notebooks"
         },
         precio: 350000
     },
@@ -17,7 +17,7 @@ const productos= [
         imagen: "./img/notebook-hp.webp",
         categoria: {
             nombre: "Notebooks",
-            id: "notebooks"
+            id: "Notebooks"
         },
         precio: 265999
     },
@@ -28,7 +28,7 @@ const productos= [
         imagen: "./img/notebook_lenovo.webp",
         categoria: {
             nombre: "Notebooks",
-            id: "notebooks"
+            id: "Notebooks"
         },
         precio: 405000
     },
@@ -38,7 +38,7 @@ const productos= [
         imagen: "./img/Accesorios/monitor samsung.png",
         categoria: {
             nombre: "Monitor Samsung",
-            id: "accesorios"
+            id: "Monitores"
         },
         precio: 280000
     },
@@ -48,7 +48,7 @@ const productos= [
         imagen: "./img/Accesorios/monitor gigabyte.png",
         categoria: {
             nombre: "Monitor Gigabyte",
-            id: "accesorios"
+            id: "Monitores"
         },
         precio: 250000
     },
@@ -58,7 +58,7 @@ const productos= [
         imagen: "./img/Accesorios/monitor asus.jpg",
         categoria: {
             nombre: "Monitor Asus",
-            id: "accesorios"
+            id: "Monitores"
         },
         precio: 200000
     },
@@ -68,7 +68,7 @@ const productos= [
         imagen: "./img/Accesorios/mouse ligitech.png",
         categoria: {
             nombre: "Mouse Inalambrico",
-            id: "accesorios"
+            id: "Accesorios"
         },
         precio: 1000
     },
@@ -78,7 +78,7 @@ const productos= [
         imagen: "./img/Accesorios/mouse razer.png",
         categoria: {
             nombre: "Mouse Razer",
-            id: "accesorios"
+            id: "Accesorios"
         },
         precio: 2000
     },
@@ -88,9 +88,19 @@ const productos= [
         imagen: "./img/Accesorios/cpu-gamer.png",
         categoria: {
             nombre: "CPU gamer",
-            id: "accesorios"
+            id: "Otros productos"
         },
         precio: 500000
+    },
+    {    
+      id: "Consola-01",
+      titulo: "Consola 01",
+      imagen: "./img/OtrosProductos/playstation5.webp",
+      categoria: {
+          nombre: "Playstation 5",
+          id: "Otros productos"
+      },
+      precio: 500000
     }
 
 
@@ -99,7 +109,8 @@ const productos= [
 /*Traemos desde el html  */
 const contenedorProductos = document.querySelector("#contenedor-productos");
 const botonesCategoria = document.querySelectorAll(".boton-categoria");
-
+const tituloPrincipal = document.querySelector("#titulo-principal");
+let botonesAgregar = document.querySelectorAll(".producto-agregar");
 
 function cargarProductos(ProductosElegidos){
 
@@ -131,10 +142,32 @@ botonesCategoria.forEach(boton => {
         e.currentTarget.classList.add("active");
 
         if (e.currentTarget.id !== "todos") {
+            const productoCategoria = productos.find(producto => producto.categoria.id === e.currentTarget.id);
+            tituloPrincipal.innerText = productoCategoria.categoria.id;
+
             const productosBoton = productos.filter(producto => producto.categoria.id === e.currentTarget.id);
             cargarProductos(productosBoton);
         } else {
+            tituloPrincipal.innerText = "Todos los productos";
             cargarProductos(productos);
         }
     });
 });
+
+function actualizarBotonesAgregar() {
+    botonesAgregar = document.querySelectorAll(".producto-agregar");
+
+    botonesAgregar.forEach(boton => {
+        boton.addEventListener("click", agregarAlCarrito);
+    });
+}
+
+const productosEnCarrito = [];
+
+function agregarAlCarrito(e) {
+
+  const idBoton = e.currentTarget.id;
+  const productoAgregado = productos.find(producto => producto.id === idBoton);
+
+  productosEnCarrito.push(productoAgregado);
+}
