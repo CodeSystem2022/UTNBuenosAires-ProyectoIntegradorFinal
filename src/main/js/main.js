@@ -37,7 +37,7 @@ const productos= [
         titulo: "Monitor 01",
         imagen: "./img/Accesorios/monitor samsung.png",
         categoria: {
-            nombre: "Monitor Samsung",
+            nombre: "Monitores",
             id: "Monitores"
         },
         precio: 280000
@@ -47,7 +47,7 @@ const productos= [
         titulo: "Monitor 02",
         imagen: "./img/Accesorios/monitor gigabyte.png",
         categoria: {
-            nombre: "Monitor Gigabyte",
+            nombre: "Monitores",
             id: "Monitores"
         },
         precio: 250000
@@ -57,7 +57,7 @@ const productos= [
         titulo: "Monitor 03",
         imagen: "./img/Accesorios/monitor asus.jpg",
         categoria: {
-            nombre: "Monitor Asus",
+            nombre: "Monitores",
             id: "Monitores"
         },
         precio: 200000
@@ -67,7 +67,7 @@ const productos= [
         titulo: "Mouse 01",
         imagen: "./img/Accesorios/mouse ligitech.png",
         categoria: {
-            nombre: "Mouse Inalambrico",
+            nombre: "Accesorios",
             id: "Accesorios"
         },
         precio: 1000
@@ -77,28 +77,28 @@ const productos= [
         titulo: "Mouse 02",
         imagen: "./img/Accesorios/mouse razer.png",
         categoria: {
-            nombre: "Mouse Razer",
+            nombre: "Accesorios",
             id: "Accesorios"
         },
         precio: 2000
     },
     {    
-        id: "CPU-01",
-        titulo: "CPU 01",
+        id: "Otros-productos-01",
+        titulo: "Otros-productos 01",
         imagen: "./img/Accesorios/cpu-gamer.png",
         categoria: {
-            nombre: "CPU gamer",
-            id: "Otros productos"
+            nombre: "Otros productos",
+            id: "Otros-productos"
         },
         precio: 500000
     },
     {    
-      id: "Consola-01",
-      titulo: "Consola 01",
+      id: "Otros-productos-02",
+      titulo: "Otros-productos 02",
       imagen: "./img/OtrosProductos/playstation5.webp",
       categoria: {
-          nombre: "Playstation 5",
-          id: "Otros productos"
+          nombre: "Otros productos",
+          id: "Otros-productos"
       },
       precio: 500000
     }
@@ -133,6 +133,8 @@ function cargarProductos(ProductosElegidos){
         contenedorProductos.append(div);
 
     })
+
+    actualizarBotonesAgregar();
 }
 
 cargarProductos(productos);  /*Llamamos a la función */
@@ -142,9 +144,9 @@ botonesCategoria.forEach(boton => {
         botonesCategoria.forEach(boton => boton.classList.remove("active")); /*Le sacamos el active del boton que esta seleccionado */
         e.currentTarget.classList.add("active");
 
-        if (e.currentTarget.id !== "todos") {
+        if (e.currentTarget.id != "todos") {
             const productoCategoria = productos.find(producto => producto.categoria.id === e.currentTarget.id);
-            tituloPrincipal.innerText = productoCategoria.categoria.id;
+            tituloPrincipal.innerText = productoCategoria.categoria.nombre;
 
             const productosBoton = productos.filter(producto => producto.categoria.id === e.currentTarget.id);
             cargarProductos(productosBoton);
@@ -164,18 +166,16 @@ function actualizarBotonesAgregar() {
 }
 
 let productosEnCarrito;
-const productosEnCarritoLS = JSON.parse(localStorage.getItem("productos-en-carrito"));
+
+let productosEnCarritoLS = localStorage.getItem("productos-en-carrito");
 
 if (productosEnCarritoLS) {
-    productosEnCarrito = productosEnCarritoLS;
+    productosEnCarrito = JSON.parse(productosEnCarritoLS);
     actualizarNumerito();
 } else {
-    const productosEnCarrito = [];
+    productosEnCarrito = [];
 }
 
-
-cargarProductos(productos);
-actualizarBotonesAgregar();
 
 function agregarAlCarrito(e) {
 
@@ -183,7 +183,7 @@ function agregarAlCarrito(e) {
     const productoAgregado = productos.find(producto => producto.id === idBoton);
 
     if(productosEnCarrito.some(producto => producto.id === idBoton)){
-        const index = productosEnCarrito.findIndex(producto => producto.id ===idBoton);
+        const index = productosEnCarrito.findIndex(producto => producto.id === idBoton);
         productosEnCarrito[index].cantidad++;
     } else {
         productoAgregado.cantidad = 1;
