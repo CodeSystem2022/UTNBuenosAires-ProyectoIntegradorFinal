@@ -3,7 +3,7 @@
 const productos= [
     {
         id: "notebook-01",
-        titulo: "Notebook 01",
+        nombre: "Notebook 01",
         imagen: "./img/notebook-asus.jpeg",
         categoria: {
             nombre: "Notebooks",
@@ -13,7 +13,7 @@ const productos= [
     },
     {    
         id: "notebook-02",
-        titulo: "Notebook 02",
+        nombre: "Notebook 02",
         imagen: "./img/notebook-hp.webp",
         categoria: {
             nombre: "Notebooks",
@@ -24,7 +24,7 @@ const productos= [
 
     {   
         id: "notebook-03",
-        titulo: "Notebook 03",
+        nombre: "Notebook 03",
         imagen: "./img/notebook_lenovo.webp",
         categoria: {
             nombre: "Notebooks",
@@ -34,7 +34,7 @@ const productos= [
     },
     {    
         id: "Monitor-01",
-        titulo: "Monitor 01",
+        nombre: "Monitor 01",
         imagen: "./img/Accesorios/monitor samsung.png",
         categoria: {
             nombre: "Monitores",
@@ -44,7 +44,7 @@ const productos= [
     },
     {    
         id: "Monitor-02",
-        titulo: "Monitor 02",
+        nombre: "Monitor 02",
         imagen: "./img/Accesorios/monitor gigabyte.png",
         categoria: {
             nombre: "Monitores",
@@ -54,7 +54,7 @@ const productos= [
     },
     {    
         id: "Monitor-03",
-        titulo: "Monitor 03",
+        nombre: "Monitor 03",
         imagen: "./img/Accesorios/monitor asus.jpg",
         categoria: {
             nombre: "Monitores",
@@ -64,7 +64,7 @@ const productos= [
     },
     {    
         id: "Mouse-01",
-        titulo: "Mouse 01",
+        nombre: "Mouse 01",
         imagen: "./img/Accesorios/mouse ligitech.png",
         categoria: {
             nombre: "Accesorios",
@@ -74,7 +74,7 @@ const productos= [
     },
     {    
         id: "Mouse-02",
-        titulo: "Mouse 02",
+        nombre: "Mouse 02",
         imagen: "./img/Accesorios/mouse razer.png",
         categoria: {
             nombre: "Accesorios",
@@ -84,7 +84,7 @@ const productos= [
     },
     {    
         id: "Otros-productos-01",
-        titulo: "Otros-productos 01",
+        nombre: "Otros-productos 01",
         imagen: "./img/Accesorios/cpu-gamer.png",
         categoria: {
             nombre: "Otros productos",
@@ -94,7 +94,7 @@ const productos= [
     },
     {    
       id: "Otros-productos-02",
-      titulo: "Otros-productos 02",
+      nombre: "Otros-productos 02",
       imagen: "./img/OtrosProductos/playstation5.webp",
       categoria: {
           nombre: "Otros productos",
@@ -113,8 +113,57 @@ const tituloPrincipal = document.querySelector("#titulo-principal");
 let botonesAgregar = document.querySelectorAll(".producto-agregar");
 const numerito = document.querySelector("#numerito");
 
-function cargarProductos(ProductosElegidos){
+function traerProductos() {
+    // const xhr = new XMLHttpRequest();
+    // function onRequestHandler() {
+    //     if (this.readyState === 4 && this.status === 200) {
+    //         const data = JSON.parse(this.response);
+    //         console.log(data)
+    //     }
+    // }
+    //
+    // xhr.addEventListener("load", onRequestHandler);
+    // xhr.open("GET","http://localhost:8080/producto/getProductos");
+    // xhr.send();
 
+
+
+
+    let listadoActualizado = [];
+    let url = 'http://localhost:8080/producto/getProductos'
+    fetch(url)
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            let productos = data;
+
+            productos.map(function(producto) {
+                console.log(producto)
+                listadoActualizado.push(producto)
+            });
+            return listadoActualizado;
+        })
+    // const userAction = async () => {
+    //     const response = await fetch(url, {
+    //         method: 'POST',
+    //         body: '', // string or object
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         }
+    //     });
+    //     console.log(response)
+    //     const myJson = await response.json(); //extract JSON from the http response
+    //     console.log(myJson)
+    //
+        // do something with myJson
+    // }
+
+}
+
+
+function cargarProductos(ProductosElegidos){
+    traerProductos();
     contenedorProductos.innerHTML ="";
 
     ProductosElegidos.forEach(producto => { /*El forEach recorre todo el array */
@@ -122,9 +171,9 @@ function cargarProductos(ProductosElegidos){
         const div = document.createElement("div");
         div.classList.add("producto");
         div.innerHTML = `
-            <img class="producto-imagen" src="${producto.imagen}" alt="${producto.titulo}">
+            <img class="producto-imagen" src="${producto.imagen}" alt="${producto.nombre}">
             <div class="producto-detalles">
-                <h3 class="producto-titulo"> ${producto.titulo}</h3>
+                <h3 class="producto-titulo"> ${producto.nombre}</h3>
                 <p class="producto-precio">${producto.precio}</p>
                 <button class="producto-agregar" id="${producto.id}">Agregar</button>
             </div>
@@ -136,7 +185,7 @@ function cargarProductos(ProductosElegidos){
 
     actualizarBotonesAgregar();
 }
-
+productos_actualizados = traerProductos();
 cargarProductos(productos);  /*Llamamos a la función */
 
 botonesCategoria.forEach(boton => {
