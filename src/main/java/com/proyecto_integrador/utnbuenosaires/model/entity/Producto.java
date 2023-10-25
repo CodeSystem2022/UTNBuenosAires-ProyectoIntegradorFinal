@@ -6,6 +6,10 @@ import lombok.*;
 
 import java.util.List;
 
+/**
+ * Un producto disponible para la compra.
+ */
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,14 +18,29 @@ import java.util.List;
 @ToString
 @Table(name = "productos")
 public class Producto {
+
+    /** Id único para el producto. */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    /** Nombre del producto. */
+    @Column(name ="nombre", nullable = false)
     private String nombre;
+
+    /** Descripción del producto. */
+    @Column(name = "descripcion", nullable = false)
     private String descripcion;
+
+    /** Dirección de la imagen del producto. */
+    @Column(name = "imagen", nullable = false)
     private String imagen;
+
+    /** Precio del producto. */
+    @Column(name = "precio", nullable = false)
     private double precio;
+
+
     private int cantidad;
 
     @ManyToOne
