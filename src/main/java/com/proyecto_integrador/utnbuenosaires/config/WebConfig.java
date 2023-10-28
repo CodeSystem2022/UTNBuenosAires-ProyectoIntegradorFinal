@@ -25,10 +25,10 @@ public class WebConfig {
     public FilterRegistrationBean corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true);
 
-        config.addAllowedOrigin("http://localhost:63342");
-
+        // Permitir la solicitud, no importa desde donde
+        config.setAllowCredentials(false);
+        config.addAllowedOriginPattern("*");
 
         // Algunos encabezados que puede recibir la api
         config.setAllowedHeaders(Arrays.asList(
