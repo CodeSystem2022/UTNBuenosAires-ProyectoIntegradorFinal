@@ -37,9 +37,7 @@ botonesCategoria.forEach(boton => {
 function actualizarBotonesAgregar() {
     botonesAgregar = document.querySelectorAll(".producto-agregar");
 
-
     botonesAgregar.forEach(boton => {
-        console.log(boton);
         boton.addEventListener("click", agregarAlCarrito);
     });
 }
@@ -62,20 +60,8 @@ function encontrarProducto(producto, id) {
 
 async function agregarAlCarrito(e) {
     const productos = await traerProductos();
-    console.log('test');
-    console.log(productos);
-    console.log('srcelement');
-    console.log(e.srcElement);
-    console.log('etargetid');
-    console.log(e.target.name);
     const idBoton = e.target.name;
-    console.log('idboton');
-    console.log(idBoton);
     const productoAgregado = productos.find(producto => producto.id == idBoton);
-    console.log('Producto agregado');
-    console.log(productoAgregado);
-
-
 
     if (productosEnCarrito.some(producto => producto.id == idBoton)) {
         const index = productosEnCarrito.findIndex(producto => producto.id == idBoton);
