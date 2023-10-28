@@ -25,6 +25,8 @@ public class WebConfig {
     public FilterRegistrationBean corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
+      
+        // Permitir la solicitud, no importa desde donde
         config.setAllowCredentials(false);
         config.addAllowedOriginPattern("*");
 
