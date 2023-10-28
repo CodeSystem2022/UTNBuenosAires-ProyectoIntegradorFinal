@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Principal</title>
-    <link rel="stylesheet" href="/src/main/js/style.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">"
 </head>
@@ -15,6 +15,7 @@
             <header>
                 <h1 class="logo">Baires Computación</h1>
             </header>
+
             <nav>
                 <ul class="menu">
                     <li>
@@ -30,10 +31,10 @@
                         <button id="Accesorios" class= "boton-menu boton-categoria"><i class="bi bi-hand-index-thumb"></i>Accesorios</button>
                     </li>
                     <li>
-                        <button id="Otros-productos" class="boton-menu boton-categoria"> <i class="bi bi-hand-index-thumb"></i>Otros productos</button>
+                        <button id="Otros" class="boton-menu boton-categoria"> <i class="bi bi-hand-index-thumb"></i>Otros productos</button>
                     </li>
                     <li>
-                        <a class="boton-menu boton-carrito" href="/src/main/js/carrito.html">
+                        <a class="boton-menu boton-carrito" href="carrito.html">
                             <i class="bi bi-cart-fill"></i>Carrito <span id="numerito" class="numerito">0</span>
                         </a>
                     </li>
@@ -47,12 +48,13 @@
         <main>
             <h2 class="titulo-principal" id="titulo-principal">Todos los productos</h2>
             <div id="contenedor-productos" class="contenedor-productos">
+
                 <!--Esto se va a rellenar con JS-->
                               
             </div>
         </main>
     </div>
-    <script src="./main.js"></script>
-    <script src="./scripts/api.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/api.js"></script>
 </body>
 </html>

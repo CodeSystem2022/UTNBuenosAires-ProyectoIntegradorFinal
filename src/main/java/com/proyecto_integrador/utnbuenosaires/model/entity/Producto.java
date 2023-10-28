@@ -40,6 +40,10 @@ public class Producto {
     @Column(name = "precio", nullable = false)
     private double precio;
 
+    /** Lista de categorias. */
+    @Enumerated(EnumType.STRING)
+    @Column(name = "categoria")
+    private Categoria categoria;
 
     private int cantidad;
 

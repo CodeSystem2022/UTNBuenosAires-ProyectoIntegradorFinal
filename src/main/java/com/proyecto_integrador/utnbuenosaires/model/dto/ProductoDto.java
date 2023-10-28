@@ -1,5 +1,6 @@
 package com.proyecto_integrador.utnbuenosaires.model.dto;
 
+import com.proyecto_integrador.utnbuenosaires.model.entity.Categoria;
 import com.proyecto_integrador.utnbuenosaires.model.entity.Usuario;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -38,5 +39,7 @@ public class ProductoDto {
     @Size(min = 2,max = 150)
     @NotBlank
     private Usuario usuario;
+
+    private Categoria categoria;
 
 }

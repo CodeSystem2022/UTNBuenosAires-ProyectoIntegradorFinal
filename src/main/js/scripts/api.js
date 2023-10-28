@@ -2,7 +2,8 @@
  * Traemos desde el html el contenedor de productos
  */
 const contenedorProductos = document.getElementById('contenedor-productos');
-const URL1 = "http://127.0.0.1:8080/producto/getProductos"
+const URLproductos = "http://127.0.0.1:8080/producto/getProductos"
+const URLcategorias = "http://127.0.0.1:8080/producto/getCategorias"
 
 // const options = {method: 'GET'};
 
@@ -62,12 +63,36 @@ const crearProducto = (producto) => {
  * Al invocar una función asíncrona, ésta deve ser asíncrona tambien
  */
 const generarTodosLosProductos = async () => {
-    const data = await getApi(URL1);
+    contenedorProductos.innerHTML = '';
+    const data = await getApi(URLproductos);
     console.log(data);
     data.map(producto => {
         console.log(producto);
         crearProducto(producto);
     });
+    // generarListadoDeCategorias();
 }
 
+async function generarProductosPorCategoria(categoria) {
+    contenedorProductos.innerHTML = '';
+    const data = await getApi(URLproductos);
+    data.map(producto => {
+        if (producto.categoria == categoria) {
+            crearProducto(producto);
+        }
+    });
+}
+
+const generarListadoDeCategorias = async () => {
+    const data = await getApi(URLcategorias);
+    // console.log(data);
+    data.map(categoria => {
+        console.log(categoria);
+    })
+
+}
+
+/**
+ * Evento que llama a generar todos los productos cuando carga la pagina
+ */
 window.addEventListener('DOMContentLoaded',generarTodosLosProductos);
