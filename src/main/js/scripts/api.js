@@ -46,9 +46,16 @@ const crearProducto = (producto) => {
     precioProducto.classList.add('producto-precio');
     precioProducto.textContent = "$ " + producto.precio;
 
+    const botonAgregar = document.createElement('button');
+    botonAgregar.classList.add('producto-agregar');
+    botonAgregar.name = producto.id;
+    botonAgregar.innerHTML = "Agregar";
+    // <button class="producto-agregar" id="${producto.id}">Agregar</button>
+
     // Agregamos nombre y precio como hijos al contenedor de descripción 
     containerDescripcion.appendChild(nombreProducto);
-    containerDescripcion.appendChild(precioProducto)
+    containerDescripcion.appendChild(precioProducto);
+    containerDescripcion.appendChild(botonAgregar);
 
     // Agregamos la imagen y la descripcion como hijos al producto
     product.appendChild(imgProducto);
@@ -71,6 +78,8 @@ const generarTodosLosProductos = async () => {
         crearProducto(producto);
     });
     // generarListadoDeCategorias();
+    actualizarBotonesAgregar();
+
 }
 
 async function generarProductosPorCategoria(categoria) {
@@ -81,7 +90,14 @@ async function generarProductosPorCategoria(categoria) {
             crearProducto(producto);
         }
     });
+    actualizarBotonesAgregar();
 }
+
+const traerProductos = async () => {
+    const data = await getApi(URLproductos);
+    return data;
+}
+
 
 const generarListadoDeCategorias = async () => {
     const data = await getApi(URLcategorias);
