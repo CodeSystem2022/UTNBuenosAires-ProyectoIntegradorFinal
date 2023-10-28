@@ -37,7 +37,9 @@ botonesCategoria.forEach(boton => {
 function actualizarBotonesAgregar() {
     botonesAgregar = document.querySelectorAll(".producto-agregar");
 
+
     botonesAgregar.forEach(boton => {
+        console.log(boton);
         boton.addEventListener("click", agregarAlCarrito);
     });
 }
@@ -53,24 +55,40 @@ if (productosEnCarritoLS) {
     productosEnCarrito = [];
 }
 
+function encontrarProducto(producto, id) {
+    return producto.id === id;
 
-// function agregarAlCarrito(e) {
+}
 
-//     const idBoton = e.currentTarget.id;
-//     const productoAgregado = productos_actualizados2.find(producto => producto.id === idBoton);
+async function agregarAlCarrito(e) {
+    const productos = await traerProductos();
+    console.log('test');
+    console.log(productos);
+    console.log('srcelement');
+    console.log(e.srcElement);
+    console.log('etargetid');
+    console.log(e.target.name);
+    const idBoton = e.target.name;
+    console.log('idboton');
+    console.log(idBoton);
+    const productoAgregado = productos.find(producto => producto.id == idBoton);
+    console.log('Producto agregado');
+    console.log(productoAgregado);
 
-//     if (productosEnCarrito.some(producto => producto.id === idBoton)) {
-//         const index = productosEnCarrito.findIndex(producto => producto.id === idBoton);
-//         productosEnCarrito[index].cantidad++;
-//     } else {
-//         productoAgregado.cantidad = 1;
-//         productosEnCarrito.push(productoAgregado);
-//     }
 
-//     actualizarNumerito();
 
-//     localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
-// }
+    if (productosEnCarrito.some(producto => producto.id == idBoton)) {
+        const index = productosEnCarrito.findIndex(producto => producto.id == idBoton);
+        productosEnCarrito[index].cantidad++;
+    } else {
+        productoAgregado.cantidad = 1;
+        productosEnCarrito.push(productoAgregado);
+    }
+
+    actualizarNumerito();
+
+    localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
+}
 
 function actualizarNumerito() {
     let nuevoNumerito = productosEnCarrito.reduce((acc, producto) => acc + producto.cantidad, 0);
