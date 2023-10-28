@@ -50,7 +50,6 @@ const crearProducto = (producto) => {
     botonAgregar.classList.add('producto-agregar');
     botonAgregar.name = producto.id;
     botonAgregar.innerHTML = "Agregar";
-    // <button class="producto-agregar" id="${producto.id}">Agregar</button>
 
     // Agregamos nombre y precio como hijos al contenedor de descripción 
     containerDescripcion.appendChild(nombreProducto);
@@ -72,9 +71,7 @@ const crearProducto = (producto) => {
 const generarTodosLosProductos = async () => {
     contenedorProductos.innerHTML = '';
     const data = await getApi(URLproductos);
-    console.log(data);
     data.map(producto => {
-        console.log(producto);
         crearProducto(producto);
     });
     // generarListadoDeCategorias();
