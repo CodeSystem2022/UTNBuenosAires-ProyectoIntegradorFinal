@@ -2,6 +2,7 @@ package com.proyecto_integrador.utnbuenosaires.model.service.impl;
 
 import com.proyecto_integrador.utnbuenosaires.model.dto.ResponseDto;
 import com.proyecto_integrador.utnbuenosaires.model.dto.ProductoDto;
+import com.proyecto_integrador.utnbuenosaires.model.entity.Categoria;
 import com.proyecto_integrador.utnbuenosaires.model.entity.Producto;
 import com.proyecto_integrador.utnbuenosaires.model.repository.IProductoRepository;
 import com.proyecto_integrador.utnbuenosaires.model.service.IProductoService;
@@ -27,14 +28,18 @@ public class ProductoServiceImpl implements IProductoService {
     @Override
     public List<ProductoDto> getProductos() {
         ModelMapper mapper = new ModelMapper();
-        List<Producto> usuarios = productoRepository.findAll();
-        List<ProductoDto> usuariosDto = new ArrayList<>();
+        List<Producto> productos = productoRepository.findAll();
+        List<ProductoDto> productosDto = new ArrayList<>();
 
-        usuarios.stream()
-                .forEach(u-> usuariosDto.add(mapper.map(u,ProductoDto.class)));
-
-        return usuariosDto;
+        productos.stream()
+                .forEach(u-> productosDto.add(mapper.map(u,ProductoDto.class)));
+        return productosDto;
     }
+
+    public List<Categoria> getCategorias() {
+        return List.of(Categoria.values());
+    }
+
 
     public ProductoDto getProductoById(Long id) {
         ModelMapper mapper = new ModelMapper();

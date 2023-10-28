@@ -2,6 +2,7 @@ package com.proyecto_integrador.utnbuenosaires.controller;
 
 import com.proyecto_integrador.utnbuenosaires.model.dto.ResponseDto;
 import com.proyecto_integrador.utnbuenosaires.model.dto.ProductoDto;
+import com.proyecto_integrador.utnbuenosaires.model.entity.Categoria;
 import com.proyecto_integrador.utnbuenosaires.model.service.IProductoService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,11 @@ public class ProductoController {
     @GetMapping("/getProductos")
     public List<ProductoDto> getProductos(){
         return productoService.getProductos();
+    }
+
+    @GetMapping("/getCategorias")
+    public List<Categoria> getCategorias () {
+        return productoService.getCategorias();
     }
 
     @GetMapping("/getProducto/{id}")
