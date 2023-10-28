@@ -1,6 +1,5 @@
 package com.proyecto_integrador.utnbuenosaires.model.entity;
 
-import com.proyecto_integrador.utnbuenosaires.model.entity.Usuario;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,7 +15,7 @@ import java.util.Date;
 public class Orden {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String numero;
     private Date fechaCreacion;
     private Date fechaRecibida;
