@@ -42,7 +42,7 @@ public class UsuarioController {
         return usuarioService.updateUser(id,usuarioDto);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/deleteUser/{id}")
     public ResponseEntity<ResponseDto> deleteUser(@PathVariable Long id){
         return new ResponseEntity<>(usuarioService.deleteUser(id),HttpStatus.OK);
     }

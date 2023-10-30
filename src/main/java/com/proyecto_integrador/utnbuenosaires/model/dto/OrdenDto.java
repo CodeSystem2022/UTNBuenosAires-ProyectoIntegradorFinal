@@ -3,6 +3,7 @@ package com.proyecto_integrador.utnbuenosaires.model.dto;
 import com.proyecto_integrador.utnbuenosaires.model.entity.Orden;
 import jakarta.validation.constraints.*;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -14,22 +15,17 @@ import java.util.Date;
 @ToString
 public class OrdenDto {
 
-
-    private Long id;
-
-    @Size(min = 1, max = 10)
-    @NotBlank
+    @Size(max = 5)
     private String numero;
 
     @PastOrPresent
-    @NotBlank
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date fechaCreacion;
 
     @PastOrPresent
-    @NotBlank
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date fechaRecibida;
 
-   @NotBlank
     private double total;
 
 }

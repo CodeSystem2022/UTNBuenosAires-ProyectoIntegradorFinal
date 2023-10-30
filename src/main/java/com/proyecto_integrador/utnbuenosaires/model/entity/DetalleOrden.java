@@ -13,7 +13,7 @@ import lombok.*;
 public class  DetalleOrden {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String nombre;
     private double cantidad;
     private double precio;
@@ -24,6 +24,8 @@ public class  DetalleOrden {
 
     @ManyToOne
     private Producto producto;
+
+
 
     public DetalleOrden(String nombre, double cantidad, double precio, double total, Orden orden, Producto producto) {
         this.nombre = nombre;

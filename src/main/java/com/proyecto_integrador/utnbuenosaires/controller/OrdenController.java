@@ -1,9 +1,12 @@
 package com.proyecto_integrador.utnbuenosaires.controller;
 
+import com.proyecto_integrador.utnbuenosaires.model.dto.DetalleOrdenDto;
 import com.proyecto_integrador.utnbuenosaires.model.dto.OrdenDto;
 import com.proyecto_integrador.utnbuenosaires.model.dto.ResponseDto;
+import com.proyecto_integrador.utnbuenosaires.model.service.IDetalleOrdenService;
 import com.proyecto_integrador.utnbuenosaires.model.service.IOrdenService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,9 +36,10 @@ public class OrdenController {
     }
 
     @PostMapping("/createOrden")
-    public ResponseEntity<ResponseDto> createOrden(@Valid @RequestBody OrdenDto ordenDto){
+    public ResponseEntity<ResponseDto> createOrden(@Valid @RequestBody OrdenDto ordenDto) {
         return new ResponseEntity<>(ordenService.createOrden(ordenDto), HttpStatus.OK);
     }
+
 
     @PutMapping("/updateOrden/{id}")
     public Optional<ResponseEntity<OrdenDto>> updateOrden(@PathVariable Long id, @Valid @RequestBody OrdenDto ordenDto){

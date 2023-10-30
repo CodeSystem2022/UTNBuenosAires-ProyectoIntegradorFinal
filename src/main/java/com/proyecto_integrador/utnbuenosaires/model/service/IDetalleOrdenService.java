@@ -9,17 +9,16 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 import java.util.Optional;
 
-public interface IOrdenService {
+public interface IDetalleOrdenService {
 
-    List<OrdenDto> getOrdenes();
+    List<DetalleOrdenDto> getDetallesOrdenes();
 
-    OrdenDto getOrdenById(Long id);
+    DetalleOrdenDto getDetalleOrdenById(Long id);
 
-    ResponseDto createOrden(OrdenDto ordenDto);
+    ResponseDto createDetalleOrden(DetalleOrdenDto detalleOrdenDto);
 
-    Optional<ResponseEntity<OrdenDto>> updateOrden(Long id, @Valid OrdenDto OrdenDto);
+    Optional<ResponseEntity<DetalleOrdenDto>> updateDetalleOrden(Long id, @Valid DetalleOrdenDto detalleOrdenDto);
 
-    ResponseDto deleteOrden(Long id);
-
+    ResponseDto deleteDetalleOrden(Long id);
 
 }

@@ -21,19 +21,20 @@ public class OrdenServiceImpl implements IOrdenService {
 
     public OrdenServiceImpl(IOrdenRepository ordenRepository) {
         this.ordenRepository = ordenRepository;
+
     }
 
 
     @Override
     public List<OrdenDto> getOrdenes() {
         ModelMapper mapper = new ModelMapper();
-        List<Orden> usuarios = ordenRepository.findAll();
-        List<OrdenDto> usuariosDto = new ArrayList<>();
+        List<Orden> ordenes = ordenRepository.findAll();
+        List<OrdenDto> ordenesDto = new ArrayList<>();
 
-        usuarios.stream()
-                .forEach(u-> usuariosDto.add(mapper.map(u,OrdenDto.class)));
+        ordenes.stream()
+                .forEach(o-> ordenesDto.add(mapper.map(o,OrdenDto.class)));
 
-        return usuariosDto;
+        return ordenesDto;
     }
 
 
@@ -43,15 +44,15 @@ public class OrdenServiceImpl implements IOrdenService {
         return mapper.map(orden, OrdenDto.class);
     }
 
-
     @Override
-    public ResponseDto createOrden(OrdenDto usuarioDto) {
+    public ResponseDto createOrden(OrdenDto ordenDto) {
         ModelMapper mapper = new ModelMapper();
-        Orden usuario = mapper.map(usuarioDto,Orden.class);
 
-        ordenRepository.save(usuario);
+        Orden orden = mapper.map(ordenDto,Orden.class);
 
-        return new ResponseDto("Product Succesfully Created!!!");
+        ordenRepository.save(orden);
+
+        return new ResponseDto("Orden creada exitosamente!");
     }
 
 
@@ -76,6 +77,5 @@ public class OrdenServiceImpl implements IOrdenService {
         ordenRepository.deleteById(id);
         return new ResponseDto("Orden eliminada exitosamente!");
     }
-
 
 }

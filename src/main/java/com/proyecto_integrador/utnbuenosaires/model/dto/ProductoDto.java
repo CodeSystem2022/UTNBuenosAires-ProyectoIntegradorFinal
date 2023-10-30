@@ -12,9 +12,6 @@ import lombok.*;
 @ToString
 public class ProductoDto {
 
-
-    private Integer id;
-
     @Size(min = 2, max = 100)
     @NotBlank
     private String nombre;
