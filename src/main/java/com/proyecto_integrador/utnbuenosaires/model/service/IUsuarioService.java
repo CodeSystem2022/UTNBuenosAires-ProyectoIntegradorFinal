@@ -12,12 +12,12 @@ public interface IUsuarioService {
 
     List<UsuarioDto> getUsers();
 
-    UsuarioDto getUserById(Long id);
+    UsuarioDto getUserById(Integer id);
 
     ResponseDto createUser(UsuarioDto usuarioDto);
 
-    Optional<ResponseEntity<UsuarioDto>> updateUser(Long id, @Valid UsuarioDto userDto);
+    Optional<ResponseEntity<UsuarioDto>> updateUser(Integer id, @Valid UsuarioDto userDto);
 
-    ResponseDto deleteUser(Long id);
+    ResponseDto deleteUser(Integer id);
 
 }

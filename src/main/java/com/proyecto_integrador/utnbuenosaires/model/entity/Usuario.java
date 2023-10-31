@@ -2,48 +2,49 @@ package com.proyecto_integrador.utnbuenosaires.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
 import java.util.List;
 
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
-@ToString
-public class Usuario {
+@Data
+@Builder
+@Table(name = "usuarios", uniqueConstraints = {@UniqueConstraint(columnNames = {"username"})})
+public class Usuario implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_user;
+    private Integer id;
 
-    @Column(length = 8,unique = true,nullable = false)
-    private String dni;
-
-    @Column(length = 11,unique = true,nullable = false)
-    private String cuil;
+    @Column(length = 20, nullable = false)
+    private String username;
 
     @Column(length = 100,nullable = false)
-    private String name;
+    private String nombre;
 
     @Column(length = 100,nullable = false)
-    private String lastName;
-
-    @Column(length = 20,nullable = false)
-    private String telephone;
+    private String apellido;
 
     @Column(length = 100,nullable = false)
     private String email;
 
     @Column(length = 100,nullable = false)
-    private String neighborhood;
+    private String direccion;
+
+    @Column(length = 20,nullable = false)
+    private String telefono;
 
     @Column(length = 100,nullable = false)
-    private String province;
+    private String password;
 
-    @Column(length = 100,nullable = false)
-    private String country;
+    @Enumerated(EnumType.STRING)
+    private Rol rol;
 
     @OneToMany(mappedBy = "usuario")
     private List<Producto> productos;
@@ -51,17 +52,28 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario")
     private List<Orden> ordenes;
 
-    public Usuario(String dni, String cuil, String name, String lastName, String telephone, String email, String neighborhood, String province, String country) {
-        this.dni = dni;
-        this.cuil = cuil;
-        this.name = name;
-        this.lastName = lastName;
-        this.telephone = telephone;
-        this.email = email;
-        this.neighborhood = neighborhood;
-        this.province = province;
-        this.country = country;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(rol.name()));
     }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
 
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }
