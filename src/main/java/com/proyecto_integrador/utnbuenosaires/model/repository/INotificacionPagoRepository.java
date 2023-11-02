@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface INotificacionPago extends JpaRepository<NotificacionPago,Long> {
+public interface INotificacionPagoRepository extends JpaRepository<NotificacionPago,Long> {
 
 }

@@ -22,6 +22,12 @@ public class DetalleCarrito {
     @ManyToOne
     private Producto producto;
 
+
+    // Add this method to calculate the subtotal
+    public double getSubTotal() {
+        return producto.getPrecio() * cantidad;
+    }
+
     public DetalleCarrito(int cantidad, Carrito carrito, Producto producto) {
         this.cantidad = cantidad;
         this.carrito = carrito;

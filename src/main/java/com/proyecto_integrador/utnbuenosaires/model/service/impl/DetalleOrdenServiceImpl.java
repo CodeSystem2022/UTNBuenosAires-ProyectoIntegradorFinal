@@ -5,68 +5,57 @@ import com.proyecto_integrador.utnbuenosaires.model.dto.ResponseDto;
 import com.proyecto_integrador.utnbuenosaires.model.entity.DetalleOrden;
 import com.proyecto_integrador.utnbuenosaires.model.repository.IDetalleOrdenRepository;
 import com.proyecto_integrador.utnbuenosaires.model.service.IDetalleOrdenService;
-
-import org.modelmapper.ModelMapper;
+import com.proyecto_integrador.utnbuenosaires.utils.EntityDtoMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class DetalleOrdenServiceImpl implements IDetalleOrdenService {
 
     private final IDetalleOrdenRepository detalleOrdenRepository;
+    private final EntityDtoMapper entityDtoMapper;
 
-    public DetalleOrdenServiceImpl(IDetalleOrdenRepository detalleOrdenRepository) {
+    @Autowired
+    public DetalleOrdenServiceImpl(IDetalleOrdenRepository detalleOrdenRepository, EntityDtoMapper entityDtoMapper) {
         this.detalleOrdenRepository = detalleOrdenRepository;
+        this.entityDtoMapper = entityDtoMapper;
     }
-
 
     @Override
     public List<DetalleOrdenDto> getDetallesOrdenes() {
-        ModelMapper mapper = new ModelMapper();
         List<DetalleOrden> detallesOrdenes = detalleOrdenRepository.findAll();
-        List<DetalleOrdenDto> detallesOrdenesDto = new ArrayList<>();
-
-        detallesOrdenes.stream()
-                .forEach(d-> detallesOrdenesDto.add(mapper.map(d,DetalleOrdenDto.class)));
-
-        return detallesOrdenesDto;
+        return detallesOrdenes.stream()
+                .map(detalleOrden -> entityDtoMapper.mapEntityToDto(detalleOrden, DetalleOrdenDto.class))
+                .collect(Collectors.toList());
     }
 
     @Override
     public DetalleOrdenDto getDetalleOrdenById(Long id) {
-        ModelMapper mapper = new ModelMapper();
         Optional<DetalleOrden> detalleOrden = detalleOrdenRepository.findById(id);
-        return mapper.map(detalleOrden, DetalleOrdenDto.class);
+        return entityDtoMapper.mapEntityToDto(detalleOrden.orElse(null), DetalleOrdenDto.class);
     }
 
     @Override
     public ResponseDto createDetalleOrden(DetalleOrdenDto detalleOrdenDto) {
-        ModelMapper mapper = new ModelMapper();
-
-        DetalleOrden detalleOrden = mapper.map(detalleOrdenDto,DetalleOrden.class);
-
+        DetalleOrden detalleOrden = entityDtoMapper.mapEntityToDto(detalleOrdenDto, DetalleOrden.class);
         detalleOrdenRepository.save(detalleOrden);
-
         return new ResponseDto("Orden creada exitosamente!");
     }
 
     @Override
     public Optional<ResponseEntity<DetalleOrdenDto>> updateDetalleOrden(Long id, DetalleOrdenDto detalleOrdenDto) {
-        ModelMapper mapper = new ModelMapper();
         return detalleOrdenRepository.findById(id)
-                .map(d->{
-                    d.setNombre(detalleOrdenDto.getNombre());
-                    d.setCantidad(detalleOrdenDto.getCantidad());
-                    d.setPrecio(detalleOrdenDto.getPrecio());
-                    d.setTotal(detalleOrdenDto.getTotal());
-
-                    DetalleOrden updatedDetalleOrden = detalleOrdenRepository.save(d);
-                    DetalleOrdenDto updatedDetalleOrdenDto = mapper.map(updatedDetalleOrden,DetalleOrdenDto.class);
+                .map(d -> {
+                    DetalleOrden detalleOrden = entityDtoMapper.mapEntityToDto(detalleOrdenDto, DetalleOrden.class);
+                    detalleOrden.setId(id);
+                    detalleOrden = detalleOrdenRepository.save(detalleOrden);
+                    DetalleOrdenDto updatedDetalleOrdenDto = entityDtoMapper.mapEntityToDto(detalleOrden, DetalleOrdenDto.class);
                     return new ResponseEntity<>(updatedDetalleOrdenDto, HttpStatus.OK);
                 });
     }

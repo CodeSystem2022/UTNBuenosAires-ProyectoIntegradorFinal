@@ -1,11 +1,11 @@
 package com.proyecto_integrador.utnbuenosaires.model.repository;
 
-import com.proyecto_integrador.utnbuenosaires.model.entity.Carrito;
+import com.proyecto_integrador.utnbuenosaires.model.entity.Pago;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface ICarrito extends JpaRepository<Carrito,Long> {
+public interface IPagoRepository extends JpaRepository<Pago,Long> {
 
 }

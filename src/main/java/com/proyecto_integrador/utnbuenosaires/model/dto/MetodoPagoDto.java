@@ -1,6 +1,7 @@
 package com.proyecto_integrador.utnbuenosaires.model.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 @AllArgsConstructor
@@ -8,14 +9,12 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-public class DetalleCarritoDto {
-
-    private int cantidad;
-
+public class MetodoPagoDto {
+    @Size(min = 2, max = 100)
     @NotBlank
-    private CarritoDto carrito;
+    private String nombre;
 
+    @Size(min = 2, max = 150)
     @NotBlank
-    private ProductoDto producto;
-
+    private String icono;
 }

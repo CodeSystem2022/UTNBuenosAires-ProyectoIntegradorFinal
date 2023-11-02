@@ -4,9 +4,7 @@ import com.proyecto_integrador.utnbuenosaires.model.entity.Orden;
 import com.proyecto_integrador.utnbuenosaires.model.entity.Producto;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.PastOrPresent;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.*;
 
 import java.util.Date;
@@ -19,16 +17,17 @@ import java.util.Date;
 @ToString
 public class DetalleOrdenDto {
 
-    @Size(min = 1, max = 10)
-    @NotBlank
+    @Size(min = 1, max = 20, message = "El nombre debe tener entre 1 y 20 caracteres")
+    @NotBlank(message = "El campo 'nombre' no puede estar en blanco")
     private String nombre;
 
-    @PastOrPresent
+    @PositiveOrZero(message = "La cantidad debe ser un número positivo o cero")
     private double cantidad;
 
-    @PastOrPresent
+    @PositiveOrZero(message = "El precio debe ser un número positivo o cero")
     private double precio;
 
+    @Positive(message = "El total debe ser un número positivo")
     private double total;
 
 

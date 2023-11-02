@@ -3,6 +3,7 @@ package com.proyecto_integrador.utnbuenosaires.model.dto;
 import com.proyecto_integrador.utnbuenosaires.model.entity.DetalleCarrito;
 import com.proyecto_integrador.utnbuenosaires.model.entity.Usuario;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.util.List;
@@ -14,9 +15,10 @@ import java.util.List;
 @ToString
 public class CarritoDto {
 
-    @NotBlank
-    private Usuario usuario;
+    @NotBlank(message = "El campo 'usuario' no puede estar en blanco")
+    private String usuario;
 
-    private List<DetalleCarrito> detalles;
+    @NotNull(message = "La lista de detalles no puede ser nula")
+    private List<DetalleCarritoDto> detalles;
 
 }

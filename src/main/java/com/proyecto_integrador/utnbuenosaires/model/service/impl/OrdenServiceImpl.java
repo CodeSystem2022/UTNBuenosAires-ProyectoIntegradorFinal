@@ -5,71 +5,58 @@ import com.proyecto_integrador.utnbuenosaires.model.dto.ResponseDto;
 import com.proyecto_integrador.utnbuenosaires.model.entity.Orden;
 import com.proyecto_integrador.utnbuenosaires.model.service.IOrdenService;
 import com.proyecto_integrador.utnbuenosaires.model.repository.IOrdenRepository;
-import org.modelmapper.ModelMapper;
+import com.proyecto_integrador.utnbuenosaires.utils.EntityDtoMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class OrdenServiceImpl implements IOrdenService {
 
     private final IOrdenRepository ordenRepository;
+    private final EntityDtoMapper entityDtoMapper;
 
-    public OrdenServiceImpl(IOrdenRepository ordenRepository) {
+    public OrdenServiceImpl(IOrdenRepository ordenRepository, EntityDtoMapper entityDtoMapper) {
         this.ordenRepository = ordenRepository;
-
+        this.entityDtoMapper = entityDtoMapper;
     }
-
 
     @Override
     public List<OrdenDto> getOrdenes() {
-        ModelMapper mapper = new ModelMapper();
-        List<Orden> ordenes = ordenRepository.findAll();
-        List<OrdenDto> ordenesDto = new ArrayList<>();
-
-        ordenes.stream()
-                .forEach(o-> ordenesDto.add(mapper.map(o,OrdenDto.class)));
-
-        return ordenesDto;
+        return ordenRepository.findAll().stream()
+                .map(orden -> entityDtoMapper.mapEntityToDto(orden, OrdenDto.class))
+                .collect(Collectors.toList());
     }
 
-
+    @Override
     public OrdenDto getOrdenById(Long id) {
-        ModelMapper mapper = new ModelMapper();
         Optional<Orden> orden = ordenRepository.findById(id);
-        return mapper.map(orden, OrdenDto.class);
+        return entityDtoMapper.mapEntityToDto(orden, OrdenDto.class);
     }
 
     @Override
     public ResponseDto createOrden(OrdenDto ordenDto) {
-        ModelMapper mapper = new ModelMapper();
-
-        Orden orden = mapper.map(ordenDto,Orden.class);
-
+        Orden orden = entityDtoMapper.mapDtoToEntity(ordenDto, Orden.class);
         ordenRepository.save(orden);
-
         return new ResponseDto("Orden creada exitosamente!");
     }
 
-
     @Override
     public Optional<ResponseEntity<OrdenDto>> updateOrden(Long id, OrdenDto ordenDto) {
-        ModelMapper mapper = new ModelMapper();
-        return ordenRepository.findById(id)
-                .map(o->{
-                    o.setNumero(ordenDto.getNumero());
-                    o.setFechaCreacion(ordenDto.getFechaCreacion());
-                    o.setFechaRecibida(ordenDto.getFechaRecibida());
-                    o.setTotal(ordenDto.getTotal());
+        return ordenRepository.findById(id).map(orden -> {
+            orden.setNumero(ordenDto.getNumero());
+            orden.setFechaCreacion(ordenDto.getFechaCreacion());
+            orden.setFechaRecibida(ordenDto.getFechaRecibida());
+            orden.setTotal(ordenDto.getTotal());
 
-                    Orden updatedOrden = ordenRepository.save(o);
-                    OrdenDto updatedOrdenDto = mapper.map(updatedOrden,OrdenDto.class);
-                    return new ResponseEntity<>(updatedOrdenDto, HttpStatus.OK);
-                });
+            Orden updatedOrden = ordenRepository.save(orden);
+            OrdenDto updatedOrdenDto = entityDtoMapper.mapEntityToDto(updatedOrden, OrdenDto.class);
+            return new ResponseEntity<>(updatedOrdenDto, HttpStatus.OK);
+        });
     }
 
     @Override
@@ -77,5 +64,4 @@ public class OrdenServiceImpl implements IOrdenService {
         ordenRepository.deleteById(id);
         return new ResponseDto("Orden eliminada exitosamente!");
     }
-
 }
