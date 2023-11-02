@@ -18,9 +18,16 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
+    /**
+     * Definición de llave secreta, para decodificar los tokens
+     */
     private static final String SECRET_KEY = "M1LL4V3S3CR3T4M1LL4V3S3CR3T4M1LL4V3S3CR3T4M1LL4V3S3CR3T4";
+
+    /**
+     * getToken, con UserDetails para devolver un hachmap con todos los datos del encabezadoo
+     */
     public String getToken(UserDetails usuario) {
-        return getToken(new HashMap<>(),usuario);
+        return getToken(new HashMap<>(), usuario);
     }
 
     private String getToken(Map<String, Object> extraClaims, UserDetails usuario) {
@@ -29,20 +36,29 @@ public class JwtService {
                 .setClaims(extraClaims)
                 .setSubject(usuario.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis()+1000*60*24))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
                 .signWith(getKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
 
+    /**
+     * Decodificar la clave en hash con la llave secreta
+     */
     private Key getKey() {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
+    /**
+     * Devolver username desde token
+     */
     public String getUsernameFromToken(String token) {
         return getClaim(token, Claims::getSubject);
     }
 
+    /**
+     * Chequea la fecha de expiración del token
+     */
     public boolean isTokenValid(String token, UserDetails userDetails) {
         final String username = getUsernameFromToken(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
@@ -57,7 +73,7 @@ public class JwtService {
                 .getBody();
     }
 
-    public <T> T getClaim(String token, Function <Claims,T> claimsResolver) {
+    public <T> T getClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = getAllClaims(token);
         return claimsResolver.apply(claims);
     }

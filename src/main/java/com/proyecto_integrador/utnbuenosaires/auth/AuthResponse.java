@@ -10,5 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AuthResponse {
+    /**
+     * Para nuestra validación, guardamos el token de la response
+     */
     String token;
 }

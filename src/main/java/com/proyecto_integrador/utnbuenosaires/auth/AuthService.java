@@ -21,15 +21,13 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
 
     public AuthResponse login(LoginRequest request) {
+        /**
+         * Al realizar el login, autentica que los parametros username y password
+         * sean válidos
+         */
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.username, request.password));
-        System.out.println(request.username);
-        System.out.println(request.getUsername());
-        System.out.println(request.password);
-        System.out.println(request.getPassword());
         UserDetails usuario = usuarioRepository.findByUsername(request.username).orElseThrow();
-        System.out.println(usuario);
         String token = jwtService.getToken(usuario);
-        System.out.println(token);
         return AuthResponse.builder()
                 .token(token)
                 .build();

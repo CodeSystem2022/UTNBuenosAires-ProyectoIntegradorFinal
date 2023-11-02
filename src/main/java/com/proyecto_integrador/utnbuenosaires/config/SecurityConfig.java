@@ -21,15 +21,16 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
         return http
                 .csrf(csrf ->
                         csrf
                         .disable())
                 .authorizeHttpRequests(authRequest ->
                         authRequest
-                                .requestMatchers("/auth/**").permitAll()
-                                .requestMatchers(("/producto/getProductos")).permitAll()
+                                // Desactivada la autenticación hasta que se habilite en el front end
+                                .requestMatchers("/**").permitAll()
+//                                .requestMatchers("/auth/**").permitAll()
+//                                .requestMatchers(("/producto/getProductos")).permitAll()
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(sessionManager ->
@@ -37,7 +38,6 @@ public class SecurityConfig {
                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authProvider)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-//                .formLogin(withDefaults())
                 .build();
     }
 }

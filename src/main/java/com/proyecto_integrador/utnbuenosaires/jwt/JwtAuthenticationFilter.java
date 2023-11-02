@@ -29,13 +29,24 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     // incluso si hay multiples filtros dentro de la cadena de filtros
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        /**
+         * Guardamos el token para realizar las validaciones
+         */
         final String token = getTokenFromRequest(request);
         final String username;
+
+        /**
+         * Si token es null, no realiza validación
+         * El filterChain sigue su curso
+         */
         if (token == null) {
             filterChain.doFilter(request, response);
             return;
         }
 
+        /**
+         * Validaciones de usuario y contraseña
+         */
         username = jwtService.getUsernameFromToken(token);
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
@@ -45,9 +56,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
         }
+
+        /**
+         * Continua su flujo el filterChain
+         */
         filterChain.doFilter(request, response);
     }
 
+
+    // Tomar el token de la request, se omite "Bearer " para tener token limpio
     private String getTokenFromRequest(HttpServletRequest request) {
         final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
 

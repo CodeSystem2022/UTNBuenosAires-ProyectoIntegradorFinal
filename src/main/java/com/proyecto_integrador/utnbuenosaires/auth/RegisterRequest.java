@@ -10,6 +10,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegisterRequest {
+    /**
+     * Modelado de estructura para Registro de usuarios
+     */
     String username;
     String password;
     String direccion;

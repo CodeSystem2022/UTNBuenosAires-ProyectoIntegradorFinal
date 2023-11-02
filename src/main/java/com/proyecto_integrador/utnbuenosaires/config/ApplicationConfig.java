@@ -2,7 +2,6 @@ package com.proyecto_integrador.utnbuenosaires.config;
 
 import com.proyecto_integrador.utnbuenosaires.model.repository.IUsuarioRepository;
 import lombok.RequiredArgsConstructor;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
