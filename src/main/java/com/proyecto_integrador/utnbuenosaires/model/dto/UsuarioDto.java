@@ -3,47 +3,42 @@ package com.proyecto_integrador.utnbuenosaires.model.dto;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString
 public class UsuarioDto {
-    @Size(min = 8, max = 8)
-    @NotBlank
-    private String dni;
-
-    @Size(min = 11, max = 11)
-    @NotBlank
-    private String cuil;
 
     @Size(min = 2, max = 150)
     @NotBlank
-    private String name;
+    private String username;
 
     @Size(min = 2, max = 150)
     @NotBlank
-    private String lastName;
+    private String password;
 
-    @Size(min = 6,max = 20)
+    @Size(min = 2, max = 150)
     @NotBlank
-    private String telephone;
+    private String nombre;
 
-    @Email
+    @Size(min = 2, max = 150)
+    @NotBlank
+    private String apellido;
+
+    @Size(min = 2, max = 150)
     @NotBlank
     private String email;
 
-    @Size(min = 2,max = 150)
+    @Size(min = 2, max = 150)
     @NotBlank
-    private String neighborhood;
+    private String direccion;
 
-    @Size(min = 2,max = 150)
+    @Size(min = 2, max = 150)
     @NotBlank
-    private String province;
+    private String telefono;
 
-    @Size(min = 2,max = 150)
+    @Size(min = 2, max = 150)
     @NotBlank
-    private String country;
-
+    private String rol;
 }

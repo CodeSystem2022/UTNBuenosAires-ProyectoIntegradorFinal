@@ -36,7 +36,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
         return usuariosDto;
     }
 
-    public UsuarioDto getUserById(Long id) {
+    public UsuarioDto getUserById(Integer id) {
         ModelMapper mapper = new ModelMapper();
         Optional<Usuario> user = usuarioRepository.findById(id);
         return mapper.map(user, UsuarioDto.class);
@@ -55,31 +55,35 @@ public class UsuarioServiceImpl implements IUsuarioService {
         return new ResponseDto("User Succesfully Created!!!");
     }
 
-
     @Override
-    public Optional<ResponseEntity<UsuarioDto>> updateUser(Long id, UsuarioDto usuarioDto) {
-        ModelMapper mapper = new ModelMapper();
-        return usuarioRepository.findById(id)
-                .map(u->{
-                    u.setDni(usuarioDto.getDni());
-                    u.setCuil(usuarioDto.getCuil());
-                    u.setName(usuarioDto.getName());
-                    u.setLastName(usuarioDto.getLastName());
-                    u.setTelephone(usuarioDto.getTelephone());
-                    u.setEmail(usuarioDto.getEmail());
-                    u.setNeighborhood(usuarioDto.getNeighborhood());
-                    u.setProvince(usuarioDto.getProvince());
-                    u.setCountry(usuarioDto.getCountry());
-
-                    Usuario updatedUsuario = usuarioRepository.save(u);
-                    UsuarioDto updatedUsuarioDto = mapper.map(updatedUsuario,UsuarioDto.class);
-                    return new ResponseEntity<>(updatedUsuarioDto, HttpStatus.OK);
-                });
+    public Optional<ResponseEntity<UsuarioDto>> updateUser(Integer id, UsuarioDto usuarioDto) {
+        return Optional.empty();
     }
 
+//
+//    @Override
+//    public Optional<ResponseEntity<UsuarioDto>> updateUser(Integer id, UsuarioDto usuarioDto) {
+//        ModelMapper mapper = new ModelMapper();
+//        return usuarioRepository.findById(id)
+//                .map(u->{
+//                    u.setDni(usuarioDto.getDni());
+//                    u.setCuil(usuarioDto.getCuil());
+//                    u.setName(usuarioDto.getName());
+//                    u.setLastName(usuarioDto.getLastName());
+//                    u.setTelephone(usuarioDto.getTelephone());
+//                    u.setEmail(usuarioDto.getEmail());
+//                    u.setNeighborhood(usuarioDto.getNeighborhood());
+//                    u.setProvince(usuarioDto.getProvince());
+//                    u.setCountry(usuarioDto.getCountry());
+//
+//                    Usuario updatedUsuario = usuarioRepository.save(u);
+//                    UsuarioDto updatedUsuarioDto = mapper.map(updatedUsuario,UsuarioDto.class);
+//                    return new ResponseEntity<>(updatedUsuarioDto, HttpStatus.OK);
+//                });
+//    }
 
-    @Override
-    public ResponseDto deleteUser(Long id) {
+
+    public ResponseDto deleteUser(Integer id) {
         usuarioRepository.deleteById(id);
         return new ResponseDto("User Succesfully Deleted!!!");
     }

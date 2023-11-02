@@ -13,9 +13,8 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
-@ToString
+@Data
+@Builder
 @Table(name = "productos")
 public class Producto {
 
@@ -50,13 +49,5 @@ public class Producto {
     @ManyToOne
     private Usuario usuario;
 
-    public Producto(String nombre, String descripcion, String imagen, double precio, int cantidad, Usuario usuario) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.imagen = imagen;
-        this.precio = precio;
-        this.cantidad = cantidad;
-        this.usuario = usuario;
-    }
 
 }
