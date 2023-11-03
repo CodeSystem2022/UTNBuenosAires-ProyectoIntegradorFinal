@@ -48,6 +48,7 @@ public class ProductoServiceImpl implements IProductoService {
         return new ResponseDto("Product Successfully Created!!!");
     }
 
+
     @Override
     public Optional<ResponseEntity<ProductoDto>> updateProducto(Long id, ProductoDto productoDto) {
         return productoRepository.findById(id).map(producto -> {
@@ -56,7 +57,6 @@ public class ProductoServiceImpl implements IProductoService {
             producto.setImagen(productoDto.getImagen());
             producto.setPrecio(productoDto.getPrecio());
             producto.setCantidad(productoDto.getCantidad());
-            producto.setUsuario(productoDto.getUsuario());
 
             Producto updatedProducto = productoRepository.save(producto);
             ProductoDto updatedProductoDto = entityDtoMapper.mapEntityToDto(updatedProducto, ProductoDto.class);

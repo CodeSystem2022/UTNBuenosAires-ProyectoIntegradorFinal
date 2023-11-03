@@ -1,8 +1,11 @@
 package com.proyecto_integrador.utnbuenosaires.model.service.impl;
 
+import com.proyecto_integrador.utnbuenosaires.model.dto.DetalleOrdenDto;
 import com.proyecto_integrador.utnbuenosaires.model.dto.OrdenDto;
 import com.proyecto_integrador.utnbuenosaires.model.dto.ResponseDto;
+import com.proyecto_integrador.utnbuenosaires.model.entity.DetalleOrden;
 import com.proyecto_integrador.utnbuenosaires.model.entity.Orden;
+import com.proyecto_integrador.utnbuenosaires.model.service.IDetalleOrdenService;
 import com.proyecto_integrador.utnbuenosaires.model.service.IOrdenService;
 import com.proyecto_integrador.utnbuenosaires.model.repository.IOrdenRepository;
 import com.proyecto_integrador.utnbuenosaires.utils.EntityDtoMapper;
@@ -19,10 +22,12 @@ public class OrdenServiceImpl implements IOrdenService {
 
     private final IOrdenRepository ordenRepository;
     private final EntityDtoMapper entityDtoMapper;
+    private final IDetalleOrdenService detalleOrdenService; // Agregamos el servicio de DetalleOrden
 
-    public OrdenServiceImpl(IOrdenRepository ordenRepository, EntityDtoMapper entityDtoMapper) {
+    public OrdenServiceImpl(IOrdenRepository ordenRepository, EntityDtoMapper entityDtoMapper, IDetalleOrdenService detalleOrdenService) {
         this.ordenRepository = ordenRepository;
         this.entityDtoMapper = entityDtoMapper;
+        this.detalleOrdenService = detalleOrdenService;
     }
 
     @Override
@@ -41,6 +46,17 @@ public class OrdenServiceImpl implements IOrdenService {
     @Override
     public ResponseDto createOrden(OrdenDto ordenDto) {
         Orden orden = entityDtoMapper.mapDtoToEntity(ordenDto, Orden.class);
+
+        // Antes de guardar la orden, asociamos los detalles si los hay
+        if (ordenDto.getDetalles() != null && !ordenDto.getDetalles().isEmpty()) {
+            for (DetalleOrdenDto detalleOrdenDto : ordenDto.getDetalles()) {
+                DetalleOrden detalleOrden = entityDtoMapper.mapDtoToEntity(detalleOrdenDto, DetalleOrden.class);
+                detalleOrden.setOrden(orden);
+                // Guardamos el detalle en la base de datos
+                detalleOrdenService.createDetalleOrden(detalleOrdenDto);
+            }
+        }
+
         ordenRepository.save(orden);
         return new ResponseDto("Orden creada exitosamente!");
     }
@@ -65,3 +81,4 @@ public class OrdenServiceImpl implements IOrdenService {
         return new ResponseDto("Orden eliminada exitosamente!");
     }
 }
+

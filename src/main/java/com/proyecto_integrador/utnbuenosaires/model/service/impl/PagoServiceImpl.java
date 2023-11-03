@@ -15,10 +15,10 @@ public class PagoServiceImpl implements IPagoService {
 
     private final IPagoRepository pagoRepository;
 
-    @Value("${mercadopago.client_id}")
+//    @Value("${mercadopago.client_id}")
     private String mercadopagoClientId;
 
-    @Value("${mercadopago.client_secret}")
+//    @Value("${mercadopago.client_secret}")
     private String mercadopagoClientSecret;
 
     public PagoServiceImpl(IPagoRepository pagoRepository) {

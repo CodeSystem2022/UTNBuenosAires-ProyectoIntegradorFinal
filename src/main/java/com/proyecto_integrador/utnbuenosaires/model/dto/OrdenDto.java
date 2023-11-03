@@ -7,6 +7,7 @@ import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.List;
 
 
 @AllArgsConstructor
@@ -15,7 +16,6 @@ import java.util.Date;
 @Setter
 @ToString
 public class OrdenDto {
-
     @Size(max = 5, message = "El campo 'numero' no puede tener más de 5 caracteres")
     private String numero;
 
@@ -32,4 +32,6 @@ public class OrdenDto {
     @Positive(message = "El total debe ser un número positivo")
     private double total;
 
+    // Agrega una lista de DetalleOrdenDto para manejar los detalles en la misma solicitud
+    private List<DetalleOrdenDto> detalles;
 }

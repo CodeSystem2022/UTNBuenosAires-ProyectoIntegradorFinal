@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/producto")
+@RequestMapping ("/producto")
 public class ProductoController {
 
     private final IProductoService productoService;
@@ -42,7 +42,7 @@ public class ProductoController {
         return productoService.updateProducto(id,productoDto);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/deleteProducto/{id}")
     public ResponseEntity<ResponseDto> deleteProducto(@PathVariable Long id){
         return new ResponseEntity<>(productoService.deleteProducto(id),HttpStatus.OK);
     }

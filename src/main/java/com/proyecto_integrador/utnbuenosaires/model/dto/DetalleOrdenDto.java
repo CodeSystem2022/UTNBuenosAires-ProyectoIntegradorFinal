@@ -2,8 +2,6 @@ package com.proyecto_integrador.utnbuenosaires.model.dto;
 
 import com.proyecto_integrador.utnbuenosaires.model.entity.Orden;
 import com.proyecto_integrador.utnbuenosaires.model.entity.Producto;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
@@ -30,5 +28,8 @@ public class DetalleOrdenDto {
     @Positive(message = "El total debe ser un número positivo")
     private double total;
 
+    // Agrega un campo para el número de orden
+    @NotBlank(message = "El campo 'numeroDeOrden' no puede estar en blanco")
+    private String numeroDeOrden;
 
 }

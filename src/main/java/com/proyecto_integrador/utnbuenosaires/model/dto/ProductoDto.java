@@ -24,16 +24,12 @@ public class ProductoDto {
     @NotBlank(message = "El campo 'imagen' no puede estar vacío")
     private String imagen;
 
-    @Size(min = 6, max = 20, message = "El campo 'precio' debe tener entre 6 y 20 caracteres")
-    @NotBlank(message = "El campo 'precio' no puede estar vacío")
+    @Min(value = 0, message = "El campo 'precio' debe ser mayor o igual a 0")
+    @Max(value = 99999, message = "El campo 'precio' debe ser menor o igual a 99999")
     private double precio;
 
-    @Email(message = "El campo 'cantidad' debe ser un correo electrónico válido")
-    @NotBlank(message = "El campo 'cantidad' no puede estar vacío")
+    @Min(value = 0, message = "El campo 'cantidad' debe ser mayor o igual a 0")
     private int cantidad;
 
-    @Size(min = 2, max = 150, message = "El campo 'usuario' debe tener entre 2 y 150 caracteres")
-    @NotBlank(message = "El campo 'usuario' no puede estar vacío")
-    private Usuario usuario;
 
 }

@@ -1,7 +1,11 @@
 package com.proyecto_integrador.utnbuenosaires.utils;
 
+import com.proyecto_integrador.utnbuenosaires.model.dto.TransaccionDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class EntityDtoMapper {
@@ -18,5 +22,11 @@ public class EntityDtoMapper {
 
     public <D, E> E mapDtoToEntity(D dto, Class<E> entityClass) {
         return modelMapper.map(dto, entityClass);
+    }
+
+    public List<TransaccionDto> mapEntityListToDtoList(List<TransaccionDto> transacciones, Class<TransaccionDto> transaccionDtoClass) {
+        return transacciones.stream()
+                .map(transaccion -> mapEntityToDto(transaccion, transaccionDtoClass))
+                .collect(Collectors.toList());
     }
 }

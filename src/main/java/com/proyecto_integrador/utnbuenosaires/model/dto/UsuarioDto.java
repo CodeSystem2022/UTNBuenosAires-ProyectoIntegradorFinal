@@ -3,13 +3,13 @@ package com.proyecto_integrador.utnbuenosaires.model.dto;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString
 public class UsuarioDto {
+
     @Size(min = 8, max = 8, message = "El campo 'dni' debe tener exactamente 8 caracteres")
     @NotBlank(message = "El campo 'dni' no puede estar vacío")
     private String dni;
@@ -45,5 +45,13 @@ public class UsuarioDto {
     @Size(min = 2, max = 150, message = "El campo 'country' debe tener entre 2 y 150 caracteres")
     @NotBlank(message = "El campo 'country' no puede estar vacío")
     private String country;
+
+    @Size(min = 2, max = 150, message = "El campo 'nameUser' debe tener entre 2 y 150 caracteres")
+    @NotBlank(message = "El campo 'nameUser' no puede estar vacío")
+    private String nameUser;
+
+    @Size(min = 2, max = 150, message = "El campo 'password' debe tener entre 2 y 150 caracteres")
+    @NotBlank(message = "El campo 'password' no puede estar vacío")
+    private String password;
 
 }

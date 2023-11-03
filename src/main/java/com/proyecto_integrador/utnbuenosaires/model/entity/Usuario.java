@@ -19,32 +19,38 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_user;
 
-    @Column(length = 8,unique = true,nullable = false)
+    @Column(length = 8, unique = true, nullable = false)
     private String dni;
 
-    @Column(length = 11,unique = true,nullable = false)
+    @Column(length = 11, unique = true, nullable = false)
     private String cuil;
 
-    @Column(length = 100,nullable = false)
+    @Column(length = 100, nullable = false)
     private String name;
 
-    @Column(length = 100,nullable = false)
+    @Column(length = 100, nullable = false)
     private String lastName;
 
-    @Column(length = 20,nullable = false)
+    @Column(length = 20, nullable = false)
     private String telephone;
 
-    @Column(length = 100,nullable = false)
+    @Column(length = 100, nullable = false)
     private String email;
 
-    @Column(length = 100,nullable = false)
+    @Column(length = 100, nullable = false)
     private String neighborhood;
 
-    @Column(length = 100,nullable = false)
+    @Column(length = 100, nullable = false)
     private String province;
 
-    @Column(length = 100,nullable = false)
+    @Column(length = 100, nullable = false)
     private String country;
+
+    @Column(length = 100, nullable = false)
+    private String nameUser;  // Nuevo atributo nameUser
+
+    @Column(length = 100, nullable = false)
+    private String password;  // Nuevo atributo password
 
     @OneToMany(mappedBy = "usuario")
     private List<Producto> productos;
@@ -52,7 +58,7 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario")
     private List<Orden> ordenes;
 
-    public Usuario(String dni, String cuil, String name, String lastName, String telephone, String email, String neighborhood, String province, String country) {
+    public Usuario(String dni, String cuil, String name, String lastName, String telephone, String email, String neighborhood, String province, String country, String nameUser, String password) {
         this.dni = dni;
         this.cuil = cuil;
         this.name = name;
@@ -62,7 +68,7 @@ public class Usuario {
         this.neighborhood = neighborhood;
         this.province = province;
         this.country = country;
+        this.nameUser = nameUser;
+        this.password = password;
     }
-
-
 }

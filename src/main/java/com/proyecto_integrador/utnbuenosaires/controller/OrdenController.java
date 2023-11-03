@@ -17,38 +17,35 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/orden")
 public class OrdenController {
-
     private final IOrdenService ordenService;
 
     public OrdenController(IOrdenService ordenService) {
         this.ordenService = ordenService;
     }
 
-
     @GetMapping("/getOrdenes")
-    public List<OrdenDto> getOrdenes(){
+    public List<OrdenDto> getOrdenes() {
         return ordenService.getOrdenes();
     }
 
     @GetMapping("/getOrden/{id}")
-    public OrdenDto getOrdenById(@PathVariable Long id){
+    public OrdenDto getOrdenById(@PathVariable Long id) {
         return ordenService.getOrdenById(id);
     }
 
+    // Modifica el método para permitir la creación de órdenes con detalles al mismo tiempo
     @PostMapping("/createOrden")
     public ResponseEntity<ResponseDto> createOrden(@Valid @RequestBody OrdenDto ordenDto) {
         return new ResponseEntity<>(ordenService.createOrden(ordenDto), HttpStatus.OK);
     }
 
-
     @PutMapping("/updateOrden/{id}")
-    public Optional<ResponseEntity<OrdenDto>> updateOrden(@PathVariable Long id, @Valid @RequestBody OrdenDto ordenDto){
-        return ordenService.updateOrden(id,ordenDto);
+    public Optional<ResponseEntity<OrdenDto>> updateOrden(@PathVariable Long id, @Valid @RequestBody OrdenDto ordenDto) {
+        return ordenService.updateOrden(id, ordenDto);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<ResponseDto> deleteOrden(@PathVariable Long id){
-        return new ResponseEntity<>(ordenService.deleteOrden(id),HttpStatus.OK);
+    @DeleteMapping("/deleteOrden/{id}")
+    public ResponseEntity<ResponseDto> deleteOrden(@PathVariable Long id) {
+        return new ResponseEntity<>(ordenService.deleteOrden(id), HttpStatus.OK);
     }
-
 }
