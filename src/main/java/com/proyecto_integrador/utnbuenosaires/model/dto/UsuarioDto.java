@@ -53,5 +53,4 @@ public class UsuarioDto {
     @Size(min = 2, max = 150, message = "El campo 'password' debe tener entre 2 y 150 caracteres")
     @NotBlank(message = "El campo 'password' no puede estar vacío")
     private String password;
-
 }

@@ -2,12 +2,12 @@ package com.proyecto_integrador.utnbuenosaires.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Formula;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-// Clase Orden
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,7 +22,6 @@ public class Orden {
     private String numero;
     private Date fechaCreacion;
     private Date fechaRecibida;
-    private double total;
 
     @OneToMany(mappedBy = "orden", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DetalleOrden> detalles = new ArrayList<>();
@@ -30,5 +29,7 @@ public class Orden {
     @ManyToOne
     private Usuario usuario;
 
+    @Column(columnDefinition = "DOUBLE DEFAULT 0.0")
+    @Formula("COALESCE((SELECT SUM(d.cantidad * d.precio) FROM detalles d WHERE d.orden_id = id), 0)")
+    private double total;
 }
-

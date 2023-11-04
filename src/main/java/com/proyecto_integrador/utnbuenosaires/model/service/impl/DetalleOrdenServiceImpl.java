@@ -17,7 +17,6 @@ import java.util.stream.Collectors;
 
 @Service
 public class DetalleOrdenServiceImpl implements IDetalleOrdenService {
-
     private final IDetalleOrdenRepository detalleOrdenRepository;
     private final EntityDtoMapper entityDtoMapper;
 
@@ -43,17 +42,20 @@ public class DetalleOrdenServiceImpl implements IDetalleOrdenService {
 
     @Override
     public ResponseDto createDetalleOrden(DetalleOrdenDto detalleOrdenDto) {
-        DetalleOrden detalleOrden = entityDtoMapper.mapEntityToDto(detalleOrdenDto, DetalleOrden.class);
+        DetalleOrden detalleOrden = entityDtoMapper.mapDtoToEntity(detalleOrdenDto, DetalleOrden.class);
+        detalleOrden.setTotal(detalleOrden.calcularTotal()); // Calcula el total
+
         detalleOrdenRepository.save(detalleOrden);
-        return new ResponseDto("Orden creada exitosamente!");
+        return new ResponseDto("Detalle Orden creado exitosamente!");
     }
 
     @Override
     public Optional<ResponseEntity<DetalleOrdenDto>> updateDetalleOrden(Long id, DetalleOrdenDto detalleOrdenDto) {
         return detalleOrdenRepository.findById(id)
                 .map(d -> {
-                    DetalleOrden detalleOrden = entityDtoMapper.mapEntityToDto(detalleOrdenDto, DetalleOrden.class);
+                    DetalleOrden detalleOrden = entityDtoMapper.mapDtoToEntity(detalleOrdenDto, DetalleOrden.class);
                     detalleOrden.setId(id);
+                    detalleOrden.setTotal(detalleOrden.calcularTotal()); // Calcula el total
                     detalleOrden = detalleOrdenRepository.save(detalleOrden);
                     DetalleOrdenDto updatedDetalleOrdenDto = entityDtoMapper.mapEntityToDto(detalleOrden, DetalleOrdenDto.class);
                     return new ResponseEntity<>(updatedDetalleOrdenDto, HttpStatus.OK);

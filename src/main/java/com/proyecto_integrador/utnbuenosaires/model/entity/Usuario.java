@@ -2,9 +2,10 @@ package com.proyecto_integrador.utnbuenosaires.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Formula;
 
+import java.util.ArrayList;
 import java.util.List;
-
 
 @Entity
 @AllArgsConstructor
@@ -17,7 +18,7 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_user;
+    private Long id;
 
     @Column(length = 8, unique = true, nullable = false)
     private String dni;
@@ -25,10 +26,10 @@ public class Usuario {
     @Column(length = 11, unique = true, nullable = false)
     private String cuil;
 
-    @Column(length = 100, nullable = false)
+    @Column(length = 150, nullable = false)
     private String name;
 
-    @Column(length = 100, nullable = false)
+    @Column(length = 150, nullable = false)
     private String lastName;
 
     @Column(length = 20, nullable = false)
@@ -37,20 +38,20 @@ public class Usuario {
     @Column(length = 100, nullable = false)
     private String email;
 
-    @Column(length = 100, nullable = false)
+    @Column(length = 150, nullable = false)
     private String neighborhood;
 
-    @Column(length = 100, nullable = false)
+    @Column(length = 150, nullable = false)
     private String province;
 
-    @Column(length = 100, nullable = false)
+    @Column(length = 150, nullable = false)
     private String country;
 
-    @Column(length = 100, nullable = false)
-    private String nameUser;  // Nuevo atributo nameUser
+    @Column(length = 150, nullable = false)
+    private String nameUser;
 
-    @Column(length = 100, nullable = false)
-    private String password;  // Nuevo atributo password
+    @Column(length = 150, nullable = false)
+    private String password;
 
     @OneToMany(mappedBy = "usuario")
     private List<Producto> productos;

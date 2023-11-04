@@ -1,12 +1,7 @@
 package com.proyecto_integrador.utnbuenosaires.model.dto;
 
-import com.proyecto_integrador.utnbuenosaires.model.entity.Orden;
-import com.proyecto_integrador.utnbuenosaires.model.entity.Producto;
 import jakarta.validation.constraints.*;
 import lombok.*;
-
-import java.util.Date;
-
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,8 +9,10 @@ import java.util.Date;
 @Setter
 @ToString
 public class DetalleOrdenDto {
+    @NotNull
+    private Long id_producto; // Cambio el tipo a Long para almacenar el ID del producto.
 
-    @Size(min = 1, max = 20, message = "El nombre debe tener entre 1 y 20 caracteres")
+    @Size(min = 1, max = 100, message = "El nombre debe tener entre 1 y 100 caracteres")
     @NotBlank(message = "El campo 'nombre' no puede estar en blanco")
     private String nombre;
 
@@ -25,11 +22,7 @@ public class DetalleOrdenDto {
     @PositiveOrZero(message = "El precio debe ser un número positivo o cero")
     private double precio;
 
-    @Positive(message = "El total debe ser un número positivo")
-    private double total;
-
     // Agrega un campo para el número de orden
     @NotBlank(message = "El campo 'numeroDeOrden' no puede estar en blanco")
     private String numeroDeOrden;
-
 }

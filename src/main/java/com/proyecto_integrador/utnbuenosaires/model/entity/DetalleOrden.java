@@ -9,8 +9,8 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-@Table(name = "detalles")
-public class  DetalleOrden {
+@Table(name = "detalles_ordenes")
+public class DetalleOrden {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,22 +19,20 @@ public class  DetalleOrden {
     private double precio;
     private double total;
 
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Orden orden;
 
-    @ManyToOne
-    private Producto producto;
+    private Long idProducto; // Cambio el tipo a Long para almacenar el ID del producto.
 
-
-
-    public DetalleOrden(String nombre, double cantidad, double precio, double total, Orden orden, Producto producto) {
+    public DetalleOrden(String nombre, double cantidad, double precio, Orden orden, Long idProducto) {
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.precio = precio;
-        this.total = total;
         this.orden = orden;
-        this.producto = producto;
+        this.idProducto = idProducto;
     }
 
-
+    public double calcularTotal() {
+        return cantidad * precio;
+    }
 }
