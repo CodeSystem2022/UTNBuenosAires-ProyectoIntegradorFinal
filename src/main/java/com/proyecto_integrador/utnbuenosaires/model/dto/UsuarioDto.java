@@ -32,10 +32,6 @@ public class UsuarioDto {
 
     @Size(min = 2, max = 150)
     @NotBlank
-    private String direccion;
-
-    @Size(min = 2, max = 150)
-    @NotBlank
     private String telefono;
 
     @Size(min = 2, max = 150)

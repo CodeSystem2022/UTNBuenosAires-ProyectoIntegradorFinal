@@ -40,7 +40,6 @@ public class AuthService {
                 .apellido(request.apellido)
                 .password(passwordEncoder.encode(request.password))
                 .email(request.email)
-                .direccion(request.direccion)
                 .telefono(request.telefono)
                 .rol(Rol.USUARIO)
                 .build();

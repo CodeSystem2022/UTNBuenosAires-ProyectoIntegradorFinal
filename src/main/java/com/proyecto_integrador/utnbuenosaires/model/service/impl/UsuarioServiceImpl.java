@@ -2,6 +2,7 @@ package com.proyecto_integrador.utnbuenosaires.model.service.impl;
 
 import com.proyecto_integrador.utnbuenosaires.model.dto.ResponseDto;
 import com.proyecto_integrador.utnbuenosaires.model.dto.UsuarioDto;
+import com.proyecto_integrador.utnbuenosaires.model.entity.Rol;
 import com.proyecto_integrador.utnbuenosaires.model.entity.Usuario;
 import com.proyecto_integrador.utnbuenosaires.model.repository.IUsuarioRepository;
 import com.proyecto_integrador.utnbuenosaires.model.service.IUsuarioService;
@@ -43,8 +44,6 @@ public class UsuarioServiceImpl implements IUsuarioService {
     }
 
 
-
-
     @Override
     public ResponseDto createUser(UsuarioDto usuarioDto) {
         ModelMapper mapper = new ModelMapper();
@@ -55,32 +54,26 @@ public class UsuarioServiceImpl implements IUsuarioService {
         return new ResponseDto("User Succesfully Created!!!");
     }
 
+
     @Override
     public Optional<ResponseEntity<UsuarioDto>> updateUser(Integer id, UsuarioDto usuarioDto) {
-        return Optional.empty();
-    }
+        ModelMapper mapper = new ModelMapper();
+        return usuarioRepository.findById(id)
+                .map(u->{
+                    u.setUsername(usuarioDto.getUsername());
+                    u.setPassword(usuarioDto.getPassword());
+                    u.setNombre(usuarioDto.getNombre());
+                    u.setApellido(usuarioDto.getApellido());
+                    u.setEmail(usuarioDto.getEmail());
+                    u.setEmail(usuarioDto.getEmail());
+                    u.setTelefono(usuarioDto.getTelefono());
+                    u.setRol(Rol.valueOf(usuarioDto.getRol()));
 
-//
-//    @Override
-//    public Optional<ResponseEntity<UsuarioDto>> updateUser(Integer id, UsuarioDto usuarioDto) {
-//        ModelMapper mapper = new ModelMapper();
-//        return usuarioRepository.findById(id)
-//                .map(u->{
-//                    u.setDni(usuarioDto.getDni());
-//                    u.setCuil(usuarioDto.getCuil());
-//                    u.setName(usuarioDto.getName());
-//                    u.setLastName(usuarioDto.getLastName());
-//                    u.setTelephone(usuarioDto.getTelephone());
-//                    u.setEmail(usuarioDto.getEmail());
-//                    u.setNeighborhood(usuarioDto.getNeighborhood());
-//                    u.setProvince(usuarioDto.getProvince());
-//                    u.setCountry(usuarioDto.getCountry());
-//
-//                    Usuario updatedUsuario = usuarioRepository.save(u);
-//                    UsuarioDto updatedUsuarioDto = mapper.map(updatedUsuario,UsuarioDto.class);
-//                    return new ResponseEntity<>(updatedUsuarioDto, HttpStatus.OK);
-//                });
-//    }
+                    Usuario updatedUsuario = usuarioRepository.save(u);
+                    UsuarioDto updatedUsuarioDto = mapper.map(updatedUsuario,UsuarioDto.class);
+                    return new ResponseEntity<>(updatedUsuarioDto, HttpStatus.OK);
+                });
+    }
 
 
     public ResponseDto deleteUser(Integer id) {

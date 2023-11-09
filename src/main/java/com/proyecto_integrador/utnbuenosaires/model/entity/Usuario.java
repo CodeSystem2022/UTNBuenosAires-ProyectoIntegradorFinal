@@ -1,13 +1,15 @@
 package com.proyecto_integrador.utnbuenosaires.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 
 @Entity
@@ -31,13 +33,12 @@ public class Usuario implements UserDetails {
     @Column(length = 100,nullable = false)
     private String apellido;
 
-    @Column(length = 100,nullable = false)
+    @Email
+    @Column(unique = true, nullable = false)
     private String email;
 
-    @Column(length = 100,nullable = false)
-    private String direccion;
-
-    @Column(length = 20,nullable = false)
+    @Size(min = 10, max = 10, message = "Mobile Number must be exactly 10 digits long")
+    @Pattern(regexp = "^\\d{10}$", message = "Mobile Number must contain only Numbers")
     private String telefono;
 
     @Column(length = 100,nullable = false)
@@ -46,11 +47,16 @@ public class Usuario implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Rol rol;
 
-    @OneToMany(mappedBy = "usuario")
-    private List<Producto> productos;
+    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 
-    @OneToMany(mappedBy = "usuario")
-    private List<Orden> ordenes;
+    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @JoinTable(name = "user_address", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "address_id"))
+    private List<Address> addresses = new ArrayList<>();
+
+    @OneToOne(mappedBy = "user", cascade = { CascadeType.PERSIST, CascadeType.MERGE }, orphanRemoval = true)
+    private Cart cart;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
