@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="259cf4cd-9cad-4724-859a-cf13fb5c3e08" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/UtnBuenosAiresApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/config/WebConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/controller/CarritoController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/controller/ClienteMercadoPagoController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/controller/DetalleCarritoController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/controller/DetalleOrdenController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/controller/MetodoPagoController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/controller/NotificacionPagoController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/controller/OrdenController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/controller/PagoController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/controller/ProductoController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/controller/TransaccionController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/controller/UsuarioController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/dto/CarritoDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/dto/ClienteMercadoPagoDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/dto/DetalleCarritoDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/dto/DetalleOrdenDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/dto/MetodoPagoDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/dto/NotificacionPagoDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/dto/OrdenDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/dto/PagoDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/dto/ProductoDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/dto/ResponseDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/dto/TransaccionDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/dto/UsuarioDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/entity/Carrito.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/entity/ClienteMercadoPago.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/entity/DetalleCarrito.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/entity/DetalleOrden.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/entity/MetodoPago.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/entity/NotificacionPago.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/entity/Orden.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/entity/Pago.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/entity/Producto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/entity/Transaccion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/entity/Usuario.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/repository/ICarritoRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/repository/IClienteMercadoPagoRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/repository/IDetalleCarritoRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/repository/IDetalleOrdenRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/repository/IMetodoPagoRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/repository/INotificacionPagoRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/repository/IOrdenRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/repository/IPagoRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/repository/IProductoRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/repository/ITransaccionRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/repository/IUsuarioRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/service/ICarritoService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/service/IClienteMercadoPagoService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/service/IDetalleCarritoService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/service/IDetalleOrdenService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/service/IMetodoPagoService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/service/INotificacionPagoService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/service/IOrdenService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/service/IPagoService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/service/IProductoService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/service/ITransaccionService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/service/IUsuarioService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/service/impl/CarritoServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/service/impl/ClienteMercadoPagoServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/service/impl/DetalleCarritoServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/service/impl/DetalleOrdenServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/service/impl/MetodoPagoServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/service/impl/NotificacionPagoServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/service/impl/OrdenServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/service/impl/PagoServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/service/impl/ProductoServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/service/impl/TransaccionServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/model/service/impl/UsuarioServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proyecto_integrador/utnbuenosaires/utils/EntityDtoMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/carrito.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/carrito.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/img/Accesorios/camara web.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/img/Accesorios/cpu-gamer.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/img/Accesorios/cpu.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/img/Accesorios/monitor asus.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/img/Accesorios/monitor gigabyte.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/img/Accesorios/monitor samsung.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/img/Accesorios/mouse ligitech.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/img/Accesorios/mouse razer.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/img/Accesorios/mouse.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/img/Accesorios/teclado.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/img/OtrosProductos/aspiradora-robot01.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/img/OtrosProductos/camara de seguridad01.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/img/OtrosProductos/impresora-Brother02.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/img/OtrosProductos/impresora-hp01.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/img/OtrosProductos/playstation5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/img/OtrosProductos/playstation5.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/img/OtrosProductos/tablet-samsung01.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/img/notebook-asus.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/img/notebook-hp.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/img/notebook_lenovo.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/scripts/api.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/js/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/proyecto_integrador/utnbuenosaires/UtnBuenosAiresApplicationTests.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2XusuYfQUMuyYhgfJjStAeGE0ev" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "EcommerceAPI",
+    "last_opened_file_path": "C:/Users/svega/Desktop/pro/E-Commerce-Application/ECommerceApplication",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="259cf4cd-9cad-4724-859a-cf13fb5c3e08" name="Changes" comment="" />
+      <created>1699490522300</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1699490522300</updated>
+      <workItem from="1699490525390" duration="287000" />
+      <workItem from="1699510203329" duration="94000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
