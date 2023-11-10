@@ -22,7 +22,16 @@
 
 <body>
     <div class="topnav">
-        <div class="login-container">
+        <div class="login-container" id="login-container">
+            <script>
+                if (window.localStorage.getItem('token')) {
+                    const saludo = document.createElement('h2');
+                    console.log(saludo);
+                    saludo.textContent = "Bienvenido " + window.localStorage.getItem('username');
+                    document.getElementById('login-container').appendChild(saludo);
+                }
+            </script>
+
             <form action="/action_page.php">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                     data-bs-target="#myModal">Ingresar</button>
@@ -85,7 +94,7 @@
                                         </div>
                                     </div>
                                     <form action="javascript:registrar()" name="registration">
-                                        
+
                                         <div class="form-group">
                                             <label for="usernameR">Nombre de usuario</label>
                                             <input type="text" name="usernameR" class="form-control" id="usernameR"
@@ -127,7 +136,7 @@
                                                 aria-describedby="emailHelp" placeholder="Ingresar teléfono">
                                         </div>
 
-                                        
+
                                         <div><br></div>
 
                                         <div class="col-md-12 text-center mb-3">

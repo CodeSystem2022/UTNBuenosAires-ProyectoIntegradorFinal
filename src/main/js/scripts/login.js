@@ -76,7 +76,7 @@ $(function () {
     },
 
 
-  
+
 
 
 
@@ -104,6 +104,9 @@ $(function () {
 async function login() {
   // console.log(usernameForm.value);
   // console.log(passwordForm.value);
+  localStorage.removeItem("username");
+  localStorage.removeItem("token");
+
   const response = await fetch(URLlogin, {
     method: "POST",
     headers: {
@@ -117,18 +120,24 @@ async function login() {
     })
 
   })
-  const data = await response.json();
-  console.log(data);
-
-  window.localStorage.setItem("token", data.token);
-  window.localStorage.setItem("username", usernameForm.value);
-
-  console.log(window.localStorage.getItem("usuario"));
-  console.log(window.localStorage.getItem("token"));
+  if (response.status == 403) {
+    alert("Usuario no encontrado");
+  } else {
+    const data = await response.json();
+    console.log(data);
+  
+    window.localStorage.setItem("token", data.token);
+    window.localStorage.setItem("username", usernameForm.value);
+  
+    console.log(window.localStorage.getItem("usuario"));
+    console.log(window.localStorage.getItem("token"));
+    window.location.reload();
+  }
+  
 }
 
 async function registrar() {
-  
+
   const response = await fetch(URLregister, {
     method: "POST",
     headers: {
@@ -153,7 +162,7 @@ async function registrar() {
 
   // window.localStorage.setItem("token", data.token);
   // window.localStorage.setItem("username", usernameR.value);
-  
+
   // console.log(window.localStorage.getItem("usuario"));
   // console.log(window.localStorage.getItem("token"));
 }
