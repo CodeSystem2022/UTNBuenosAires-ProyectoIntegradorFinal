@@ -2,6 +2,8 @@
  * Traemos desde el html el contenedor de productos
  */
 const contenedorProductos = document.getElementById('contenedor-productos');
+const formularioLogin = document.getElementById('myModal');
+
 const URLproductos = "http://127.0.0.1:8080/producto/getProductos"
 const URLcategorias = "http://127.0.0.1:8080/producto/getCategorias"
 const URLusuarioPorUsername = "http://127.0.0.1:8080/usuario/obtenerUsuario"
@@ -30,9 +32,12 @@ const getApi = async (URL) => {
     // console.log(response.status);
 
     if (response.status == 403) {
-        contenedorProductos.innerHTML = response.status;
-        alert("debe logearse en su cuenta! ");
+        contenedorProductos.innerHTML = "<h2>Debe estar logeado para ver la información.</h2>";
+        formularioLogin.style.display = 'block';
+
     } else {
+        // TODO borrar luego
+        console.log("Status Respuesta:");
         console.log(response.status);
     }
 
@@ -55,13 +60,7 @@ const getUsuario = async (URL) => {
     // console.log(response);
     // console.log(response.status);
 
-    // if (response.status == 403) {
-    //     alert(response.status + "debe logearse en su cuenta! ");
-     
-        
-    
 
-    // }
     const data = await response.json();
     console.log(data);
     // Nos devuelve un array
@@ -146,44 +145,63 @@ async function generarProductosPorCategoria(categoria) {
     actualizarBotonesAgregar();
 }
 
+/**
+ * Variable asíncrona para obtener los productos de la base de datos
+ */
 const traerProductos = async () => {
     const data = await getApi(URLproductos);
     return data;
 }
 
-
+/**
+ * Variable asíncrona para listar categorias mediante API REST
+ * por el momento no utilizada
+ */
 const generarListadoDeCategorias = async () => {
     const data = await getApi(URLcategorias);
-    // console.log(data);
     data.map(categoria => {
         console.log(categoria);
     })
-
 }
 
 function chequearUsuario() {
+    // TODO BORRAR
     console.log(localStorage.getItem("username"));
     console.log(localStorage.getItem("token"));
 
-    if (window.localStorage.getItem("username") != null && window.localStorage.getItem("token") != null) {
-        // console.log("Aca mostraria:");
-        // console.log(localStorage.getItem("username"));
+    /**
+     * Validación de usuario
+     * Si no tiene guardados en localStorage valores para username y token, nos envia
+     * al formulario de login/registro
+     */
 
+    if (window.localStorage.getItem("username") != null && window.localStorage.getItem("token") != null) {
+        /**
+         * TODO
+         * Función para mostrar la barra de usuario, a implementar
+         */
         generarBarraUsuario();
 
+        /**
+         * Muestra los productos en nuestro landing page
+         */
         generarTodosLosProductos();
     }
-    else {
-        alert("Debe logearse en su cuenta! se remueven datos guardados");
-        // localStorage.removeItem("username");
-        // localStorage.removeItem("token");
 
-        // console.log(localStorage.getItem("username"));
-        // console.log(localStorage.getItem("token"));
+    else {
+
+        /**
+         * Sino encuentra datos guardados que validen la identidad del usuario, 
+         * lo invita a logearse en su cuenta o registrar una nueva
+         */
+
+        // Muestra el formulario para login
+        formularioLogin.style.display = 'block';
     }
 }
 
 /**
- * Evento que llama a generar todos los productos cuando carga la pagina
+ * Evento que llama a realizar la validación del usuario
+ * via token
  */
-window.addEventListener('DOMContentLoaded',chequearUsuario);
+window.addEventListener('DOMContentLoaded', chequearUsuario);
