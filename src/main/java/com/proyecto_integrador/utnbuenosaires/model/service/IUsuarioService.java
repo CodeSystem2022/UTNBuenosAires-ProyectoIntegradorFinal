@@ -20,4 +20,5 @@ public interface IUsuarioService {
 
     ResponseDto deleteUser(Integer id);
 
+    UsuarioDto getUserByUsername(String username);
 }

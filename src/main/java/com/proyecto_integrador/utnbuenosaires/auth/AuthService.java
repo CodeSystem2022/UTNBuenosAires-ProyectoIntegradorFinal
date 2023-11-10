@@ -28,10 +28,14 @@ public class AuthService {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.username, request.password));
         UserDetails usuario = usuarioRepository.findByUsername(request.username).orElseThrow();
         String token = jwtService.getToken(usuario);
+        System.out.println(token);
         return AuthResponse.builder()
                 .token(token)
                 .build();
+
     }
+
+
 
     public AuthResponse register(RegisterRequest request) {
         Usuario usuario = Usuario.builder()

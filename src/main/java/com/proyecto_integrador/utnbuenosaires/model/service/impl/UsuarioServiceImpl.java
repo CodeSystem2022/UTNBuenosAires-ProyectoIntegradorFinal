@@ -6,7 +6,6 @@ import com.proyecto_integrador.utnbuenosaires.model.entity.Usuario;
 import com.proyecto_integrador.utnbuenosaires.model.repository.IUsuarioRepository;
 import com.proyecto_integrador.utnbuenosaires.model.service.IUsuarioService;
 import org.modelmapper.ModelMapper;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -86,5 +85,12 @@ public class UsuarioServiceImpl implements IUsuarioService {
     public ResponseDto deleteUser(Integer id) {
         usuarioRepository.deleteById(id);
         return new ResponseDto("User Succesfully Deleted!!!");
+    }
+    public UsuarioDto getUserByUsername(String username) {
+        ModelMapper mapper = new ModelMapper();
+        Optional<Usuario> user = usuarioRepository.findByUsername(username);
+        System.out.println(user);
+        return mapper.map(user, UsuarioDto.class);
+
     }
 }

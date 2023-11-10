@@ -32,6 +32,13 @@ public class UsuarioController {
         return usuarioService.getUserById(id);
     }
 
+    @GetMapping("/obtenerUsuario/{username}")
+    public UsuarioDto getUserByUsername(@PathVariable String username){
+        return usuarioService.getUserByUsername(username);
+    }
+
+
+
     @PostMapping("/createUser")
     public ResponseEntity<ResponseDto> createUser(@Valid @RequestBody UsuarioDto usuarioDto){
         return new ResponseEntity<>(usuarioService.createUser(usuarioDto), HttpStatus.OK);

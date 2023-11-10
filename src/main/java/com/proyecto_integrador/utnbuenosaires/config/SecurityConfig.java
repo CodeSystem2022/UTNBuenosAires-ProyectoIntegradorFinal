@@ -28,8 +28,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authRequest ->
                         authRequest
                                 // Desactivada la autenticación hasta que se habilite en el front end
-                                .requestMatchers("/**").permitAll()
-//                                .requestMatchers("/auth/**").permitAll()
+//                                .requestMatchers("/**").permitAll()
+                                .requestMatchers("/auth/**").permitAll()
 //                                .requestMatchers(("/producto/getProductos")).permitAll()
                                 .anyRequest().authenticated()
                 )

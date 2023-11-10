@@ -4,6 +4,7 @@
 const contenedorProductos = document.getElementById('contenedor-productos');
 const URLproductos = "http://127.0.0.1:8080/producto/getProductos"
 const URLcategorias = "http://127.0.0.1:8080/producto/getCategorias"
+const URLusuarioPorUsername = "http://127.0.0.1:8080/usuario/obtenerUsuario"
 
 // const options = {method: 'GET'};
 
@@ -16,12 +17,60 @@ const URLcategorias = "http://127.0.0.1:8080/producto/getCategorias"
  * Función asincrona para traer datos desde cualquier URL API Rest
  */
 const getApi = async (URL) => {
-    const response = await fetch(URL);
+    // console.log(window.localStorage.getItem("token"));
+    const response = await fetch(URL, {
+        // mode: 'no-cors',
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+            "AUTHORIZATION": `Bearer ${window.localStorage.getItem("token")}`
+        },
+    });
     // console.log(response);
+    // console.log(response.status);
+
+    if (response.status == 403) {
+        contenedorProductos.innerHTML = response.status;
+        alert("debe logearse en su cuenta! ");
+    } else {
+        console.log(response.status);
+    }
+
     const data = await response.json();
     // Nos devuelve un array
     return data;
 }
+
+
+const getUsuario = async (URL) => {
+    // console.log(window.localStorage.getItem("token"));
+    const response = await fetch(`${URL}/${window.localStorage.getItem("username")}`, {
+        // mode: 'no-cors',
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+            "AUTHORIZATION": `Bearer ${window.localStorage.getItem("token")}`
+        },
+    });
+    // console.log(response);
+    // console.log(response.status);
+
+    // if (response.status == 403) {
+    //     alert(response.status + "debe logearse en su cuenta! ");
+     
+        
+    
+
+    // }
+    const data = await response.json();
+    console.log(data);
+    // Nos devuelve un array
+    return data;
+}
+
+
+
+
 
 /**
  * Función para crear cada producto desde la API
@@ -78,6 +127,13 @@ const generarTodosLosProductos = async () => {
     actualizarBotonesAgregar();
 
 }
+// TODO barra menu superior
+const generarBarraUsuario = async () => {
+    const data = await getUsuario(URLusuarioPorUsername);
+    console.log("barrausuario");
+    console.log(data);
+}
+
 
 async function generarProductosPorCategoria(categoria) {
     contenedorProductos.innerHTML = '';
@@ -105,7 +161,29 @@ const generarListadoDeCategorias = async () => {
 
 }
 
+function chequearUsuario() {
+    console.log(localStorage.getItem("username"));
+    console.log(localStorage.getItem("token"));
+
+    if (window.localStorage.getItem("username") != null && window.localStorage.getItem("token") != null) {
+        // console.log("Aca mostraria:");
+        // console.log(localStorage.getItem("username"));
+
+        generarBarraUsuario();
+
+        generarTodosLosProductos();
+    }
+    else {
+        alert("Debe logearse en su cuenta! se remueven datos guardados");
+        // localStorage.removeItem("username");
+        // localStorage.removeItem("token");
+
+        // console.log(localStorage.getItem("username"));
+        // console.log(localStorage.getItem("token"));
+    }
+}
+
 /**
  * Evento que llama a generar todos los productos cuando carga la pagina
  */
-window.addEventListener('DOMContentLoaded',generarTodosLosProductos);
+window.addEventListener('DOMContentLoaded',chequearUsuario);
