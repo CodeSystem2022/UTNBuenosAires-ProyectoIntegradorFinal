@@ -28,8 +28,9 @@ Integrantes:
 
 -----------------------------------------------
 
-IMPORTANTE 09/09/23
+Sistema de e-commerce para empresa de venta de insumos de computación
+
 
 BBDD mysql: bairescomputacion
 
-BBDD user/pass: root/admin
+BBDD user/pass: devs/ZaQwsxcde123
