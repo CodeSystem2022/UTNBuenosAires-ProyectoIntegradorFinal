@@ -28,6 +28,7 @@ Integrantes:
 
 -----------------------------------------------
 
+Sistema de e-commerce para empresa de venta de insumos de computación
 
 
 BBDD mysql: bairescomputacion
